@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Controle Blue Açaí</title>
+    <link rel="stylesheet" href="/css/admin_style.css">
+</head>
+<body>
+    <header>
+        <h1>Painel de Controle - Blue Açaí</h1>
+    </header>
+    <main>
+        <section id="shopStatusControl" class="admin-section">
+            <h2><span class="emoji-title">🏪</span> Status da Loja</h2>
+            <div class="shop-status-toggle">
+                <label class="status-label" id="statusLabelClosed">Fechada</label>
+                <label class="switch">
+                    <input type="checkbox" id="shopStatusToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="status-label" id="statusLabelOpen">Aberta</label>
+            </div>
+            
+            <div class="shop-status-toggle" style="margin-top: 1rem;">
+                <label class="status-label">Entrega Indisponível</label>
+                <label class="switch">
+                    <input type="checkbox" id="deliveryStatusToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="status-label">Entrega Disponível</label>
+            </div>
+            <div class="message-control">
+                <label for="closedMessageText">Mensagem para exibir quando a loja estiver fechada:</label>
+                <textarea id="closedMessageText" rows="5" placeholder="Digite aqui a mensagem com os horários de funcionamento..."></textarea>
+            </div>
+            <button id="saveShopStatusButton" class="btn btn-primary">Salvar Status da Loja</button>
+            <p id="shopStatusMessage" class="status-message"></p>
+        </section>
+        
+        <section id="availabilityControl" class="admin-section">
+            <h2><span class="emoji-title">📋</span> Controle de Disponibilidade de Itens</h2>
+            <div id="itemsContainer">
+                <p>Carregando itens...</p>
+            </div>
+            <button id="saveAvailabilityButton" class="btn btn-primary">Salvar Disponibilidade</button>
+            <p id="availabilityStatusMessage" class="status-message"></p>
+        </section>
+
+        <section id="orderManagement" class="admin-section">
+            <h2><span class="emoji-title">🧾</span> Pedidos Registrados</h2>
+            <div class="summary-total">
+                <strong>Total Geral de Vendas: R$ <span id="grandTotalAllTime">0.00</span></strong>
+            </div>
+
+            <div class="view-options">
+                <strong>Visualizar por:</strong>
+                <button id="viewByDayButton" class="btn btn-secondary">Dia</button>
+                <button id="viewByMonthButton" class="btn btn-secondary">Mês</button>
+            </div>
+            
+            <button id="refreshOrdersButton" class="btn btn-secondary">Atualizar Lista de Pedidos</button>
+            
+            <div id="ordersReportContainer">
+                <p>Carregando pedidos...</p>
+            </div>
+        </section>
+    </main>
+    <script src="/js/admin_script.js"></script>
+</body>
+</html>

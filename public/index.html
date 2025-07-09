@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blue Açaí – Cardápio Interativo</title>
+    <style>
+        :root {
+            --purple: #5A0F8D;
+            --light-purple: #F3E5FF;
+            --dark-text: #333;
+            --card-bg: #fff;
+            --danger-red: #dc3545;
+            --danger-red-hover: #c82333;
+            --success-green: #28a745;
+            --success-green-hover: #218838;
+        }
+        #shopClosedContainer #closedMessageText {
+            white-space: pre-wrap;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--light-purple);
+            color: var(--dark-text);
+        }
+
+        header {
+            background: var(--purple);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        header img {
+            max-width: 120px;
+            margin-bottom: .5rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 1rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        fieldset {
+            border: none;
+            margin: 1rem 0;
+            transition: opacity .3s;
+        }
+
+        fieldset[disabled] {
+            opacity: .6;
+        }
+
+        fieldset[disabled] label, fieldset[disabled] input, fieldset[disabled] textarea {
+            pointer-events: none;
+        }
+
+
+        legend {
+            font-weight: bold;
+            margin-bottom: .5rem;
+            color: var(--purple);
+        }
+
+        legend .section-status {
+            font-weight: normal;
+            font-size: 0.85em;
+            color: #666;
+            margin-left: 5px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: .75rem;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: .95rem;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        label:hover:not(.disabled-item) {
+            background-color: #f0f0f0;
+        }
+
+label.disabled-item {
+    text-decoration: line-through !important;
+    color: #aaa !important;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+        label input[type="checkbox"],
+        label input[type="radio"] {
+            margin-right: .5rem;
+            cursor: pointer;
+        }
+
+        label input[type="checkbox"]:disabled,
+        label input[type="radio"]:disabled {
+            cursor: not-allowed;
+        }
+        
+        #clientName, #addressInput {
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        #clientName:focus, #addressInput:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 2px var(--light-purple);
+        }
+
+        .counter {
+            margin-left: .5rem;
+            color: var(--purple);
+            font-weight: normal;
+            font-size: .9rem;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: .75rem;
+            margin-top: 1.5rem;
+        }
+
+        .buttons button {
+            padding: .75rem;
+            border: none;
+            border-radius: 4px;
+            background: var(--purple);
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .buttons button#btnCancel {
+            background-color: var(--danger-red);
+        }
+        .buttons button#btnCancel:hover:not(:disabled) {
+            background-color: var(--danger-red-hover);
+        }
+
+        .buttons button:hover:not(:disabled) {
+            background-color: #4a0c74;
+        }
+
+        .buttons button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #summary {
+            display: none;
+            white-space: pre-wrap;
+        }
+
+        #ordersSection {
+            border-top: 2px solid var(--purple);
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        #ordersList li {
+            margin-bottom: .75rem;
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 0.75rem;
+        }
+        
+        .repeat-item-btn {
+            background-color: var(--success-green);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.2s;
+        }
+        .repeat-item-btn:hover {
+            background-color: var(--success-green-hover);
+        }
+        .order-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+
+        #ordersList li::before {
+            content: '🍦';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.9em;
+        }
+
+        .produtos-opcoes { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .produto-card { background: var(--card-bg); border: 2px solid #ccc; border-radius: 10px; padding: 1rem; width: 210px; text-align: center; transition: 0.3s; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08); display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; position: relative; }
+        .produto-card input[type="radio"] {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--purple);
+            z-index: 2;
+        }
+        .produto-card:hover { border-color: var(--purple); transform: translateY(-3px); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12); }
+        label.produto-card.selected { border-color: var(--purple); box-shadow: 0 5px 10px rgba(90, 15, 141, 0.2); background-color: #faf5ff; }
+        .produto-card img { width: 100%; max-height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.75rem; }
+        .produto-card strong { font-size: 1rem; color: #333; display: block; margin-top: 0.5rem; }
+        .produto-card span { font-size: 0.85rem; color: #555; margin-top: 0.25rem; display: block; line-height: 1.3; }
+        
+        .pix-info-container {
+            background-color: #fdf1ff;
+            border: 1px solid var(--purple);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .pix-info-container.hidden {
+            display: none;
+        }
+        .pix-info-container h3 { color: var(--purple); margin-bottom: 0.75rem; }
+        .pix-info-container p { margin-bottom: 0.5rem; line-height: 1.4; }
+        .pix-info-container small { color: #555; font-style: italic; }
+
+        #orderPageTotal {
+            text-align: right; margin-top: 1rem; font-weight: bold;
+            font-size: 1.1em; padding: 0.75rem; background-color: #f0f0f0;
+            border-top: 1px solid #ddd; border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        #fsSpecialProductFlavors .grid-2 label {
+            border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9;
+            display: flex; align-items: center;
+        }
+        #fsSpecialProductFlavors .grid-2 label.selected-radio {
+            border-color: var(--purple); background-color: #e9d8f3; font-weight: bold;
+        }
+        #fsSpecialProductFlavors .grid-2 label input[type="radio"] {
+            margin-right: 0.5rem; cursor: pointer; accent-color: var(--purple);
+        }
+        #fsSpecialProductFlavors .grid-2 label small {
+            display: block; font-size: 0.8em; color: #555;
+            margin-left: 1.5rem; margin-top: 0.2em; font-weight: normal;
+        }
+        #fsSpecialProductFlavors .grid-2 label span {
+            display: inline; font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/images/logo.png" alt="Logomarca Blue Açaí" />
+        <h1>Blue Açaí</h1>
+        <p>Monte seu açaí como quiser!</p>
+    </header>
+    <main>
+        <div class="card">
+            <form id="formPedido">
+                <fieldset id="fsProdutoPrincipal">
+                    <legend>1. Escolha o Produto <span class="section-status">(Obrigatório)</span></legend>
+                    <div class="produtos-opcoes" id="boxProdutosPrincipais">
+                        </div>
+                </fieldset>
+
+                <fieldset id="fsSpecialProductFlavors" disabled>
+                    <legend>2. Escolha uma opção <span class="section-status">(Obrigatório)</span></legend>
+                    <div class="grid-2" id="boxSpecialProductFlavors">
+                        </div>
+                </fieldset>
+
+<fieldset id="fsFrutas" disabled>
+    <legend>2. Frutas <span id="cntFrutas" class="counter">(0/?)</span></legend>
+    <div class="grid-2" id="boxFrutas"></div>
+</fieldset>
+
+<fieldset id="fsCremes" disabled>
+    <legend>3. Cremes <span id="cntCremes" class="counter">(0/?)</span></legend>
+    <div class="grid-2" id="boxCremes"></div>
+</fieldset>
+
+<fieldset id="fsAccomp" disabled>
+    <legend>4. Acompanhamentos <span id="cntAccomp" class="counter">(0/?)</span></legend>
+    <div class="grid-2" id="boxAccomp"></div>
+</fieldset>
+
+<fieldset id="fsCoverage" disabled>
+    <legend>5. Cobertura(s) <span id="cntCover" class="counter">(0/?)</span></legend>
+    <div class="grid-2" id="boxCoverage"></div>
+</fieldset>
+<fieldset id="fsAskAdd" disabled>
+    <legend>6. Deseja Adicionais?</legend>
+    <div class="grid-2">
+        <label><input type="radio" name="wantAdd" value="Sim" />Sim</label>
+        <label><input type="radio" name="wantAdd" value="Não" />Não</label>
+    </div>
+</fieldset>
+
+<fieldset id="fsAdd" disabled>
+    <legend>7. Adicionais <span id="cntAdd" class="counter">(0/14)</span></legend>
+    <div class="grid-2" id="boxAdd"></div>
+</fieldset>
+                <fieldset id="fsClientName" disabled>
+                    <legend>8. Seu Nome <span class="section-status">(Obrigatório)</span></legend>
+                    <div>
+                         <input type="text" id="clientName" placeholder="Digite seu nome para identificação" required />
+                    </div>
+                </fieldset>
+
+                <fieldset id="fsDelivery">
+                    <legend>9. Entrega ou Retirada <span class="section-status">(Obrigatório)</span></legend>
+                    <div class="grid-2">
+                        <label><input type="radio" name="delivery" value="Retirada" required />Retirada</label>
+                        <label><input type="radio" name="delivery" value="Outeiro - R$ 3.00" />Entrega - Outeiro (R$ 3.00)</label>
+                        <label><input type="radio" name="delivery" value="Cedral - R$ 5.00" />Entrega - Cedral (R$ 5.00)</label>
+                    </div>
+                </fieldset>
+                
+                <fieldset id="fsAddress" style="display: none;">
+                    <legend>10. Endereço para Entrega <span class="section-status">(Obrigatório)</span></legend>
+                    <div>
+                        <textarea id="addressInput" rows="3" placeholder="Ex: Rua, Número, Bairro, Ponto de Referência..."></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset id="fsPayment" disabled>
+                    <legend>11. Forma de Pagamento <span class="section-status">(Obrigatório)</span></legend>
+                    <div class="grid-2">
+                        <label><input type="radio" name="payment" value="Pix" required />Pix</label>
+                        <label><input type="radio" name="payment" value="Dinheiro" />Dinheiro</label>
+                        <label><input type="radio" name="payment" value="Cartão" />Cartão</label>
+                    </div>
+                </fieldset>
+
+                <div class="buttons">
+                    <button type="button" id="btnCancel">❌ Cancelar Pedido Atual</button>
+                    <button type="button" id="btnAdd" disabled>➕ Adicionar Item ao Pedido</button>
+                    <button type="button" id="btnFinish" disabled>✅ Finalizar e Enviar Pedido</button>
+                </div>
+
+                <div id="pixInfo" class="pix-info-container hidden">
+                    <h3>Pagamento via PIX</h3>
+                    <p><strong>Nome:</strong> Bruna Raquel Carvalho Campos</p>
+                    <p><strong>Chave PIX (Celular):</strong> (98) 985016035</p>
+                    <p><small>Por favor, envie o comprovante após finalizar o pedido no WhatsApp.</small></p>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="card" id="ordersSection" style="display:none;">
+            <h2>Seus Itens no Pedido:</h2>
+            <ul id="ordersList"></ul>
+            <div id="orderPageTotal">
+                Total Geral (com frete): R$ <span id="orderPageTotalValue">0,00</span>
+            </div>
+        </div>
+
+        <div id="summary" style="display: none;"></div>
+    </main>
+    
+    <div id="shopClosedContainer" class="card" style="display: none; text-align: center; padding: 2rem; margin: 1rem auto; max-width: 800px;">
+        <h2>Estamos Fechados no Momento</h2>
+        <p id="closedMessageText" style="margin-top: 1rem; font-size: 1.1em; line-height: 1.6;"></p>
+    </div>
+<script>
+    function renderDynamicCheckboxes(containerId, categoryKey, items, noneOptionText) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = ''; // Limpa qualquer conteúdo antigo
+
+        // Cria os checkboxes para cada item
+        items.forEach(item => {
+            const label = document.createElement('label');
+            const checkbox = document.createElement('input');
+
+            checkbox.type = 'checkbox';
+            checkbox.value = item.name;
+            checkbox.id = `chk-${item.id}`;
+            checkbox.dataset.itemId = item.id;
+
+            // Já define a disponibilidade aqui
+            checkbox.disabled = !item.available;
+            label.classList.toggle('disabled-item', !item.available);
+            label.title = item.available ? '' : 'Item indisponível';
+
+            label.htmlFor = checkbox.id;
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(` ${item.name}`));
+
+            container.appendChild(label);
+        });
+
+        // Adiciona a opção "Nenhum" no final, se um texto for fornecido
+        if (noneOptionText) {
+            const noneLabel = document.createElement('label');
+            const noneCheckbox = document.createElement('input');
+
+            noneCheckbox.type = 'checkbox';
+            noneCheckbox.value = noneOptionText;
+            noneCheckbox.id = `chk-${categoryKey}-nenhum`;
+
+            noneLabel.htmlFor = noneCheckbox.id;
+            noneLabel.appendChild(noneCheckbox);
+            noneLabel.appendChild(document.createTextNode(` ${noneOptionText}`));
+            container.appendChild(noneLabel);
+        }
+    }
+    // --- SELETORES ---
+    const fs = {
+        produtoPrincipal: document.getElementById('fsProdutoPrincipal'),
+        specialProductFlavors: document.getElementById('fsSpecialProductFlavors'),
+        frutas: document.getElementById('fsFrutas'),
+        cremes: document.getElementById('fsCremes'),
+        accomp: document.getElementById('fsAccomp'),
+        cover: document.getElementById('fsCoverage'),
+        askAdd: document.getElementById('fsAskAdd'),
+        add: document.getElementById('fsAdd'),
+        clientName: document.getElementById('fsClientName'),
+        address: document.getElementById('fsAddress'),
+        payment: document.getElementById('fsPayment'),
+        delivery: document.getElementById('fsDelivery')
+    };
+    const cnt = {
+        frutas: document.getElementById('cntFrutas'), cremes: document.getElementById('cntCremes'),
+        accomp: document.getElementById('cntAccomp'), cover: document.getElementById('cntCover'),
+        add: document.getElementById('cntAdd')
+    };
+    const boxProdutosPrincipais = document.getElementById('boxProdutosPrincipais');
+    const boxSpecialProductFlavors = document.getElementById('boxSpecialProductFlavors');
+    
+    const btnAdd = document.getElementById('btnAdd');
+    const btnFinish = document.getElementById('btnFinish');
+    const btnCancel = document.getElementById('btnCancel');
+    const ordersSec = document.getElementById('ordersSection');
+    const ordersList = document.getElementById('ordersList');
+    const summaryEl = document.getElementById("summary");
+    const form = document.getElementById('formPedido');
+    const pixInfoDiv = document.getElementById('pixInfo');
+    const orderPageTotalValueEl = document.getElementById('orderPageTotalValue');
+    const clientNameInput = document.getElementById('clientName');
+    const addressInput = document.getElementById('addressInput');
+
+    const formCard = document.querySelector('#formPedido').closest('.card');
+    const shopClosedContainer = document.getElementById('shopClosedContainer');
+    const closedMessageEl = document.querySelector('#shopClosedContainer #closedMessageText');
+
+    let state = {};
+    let orders = [];
+    let allItemsData = {};
+
+    const enable = el => { if (el) el.removeAttribute('disabled'); };
+    const disable = el => { if (el) el.setAttribute('disabled', ''); };
+    function clearCheckboxes(fieldset) { if (fieldset) fieldset.querySelectorAll('input[type="checkbox"]:checked:not([disabled])').forEach(chk => chk.checked = false); }
+    function clearRadios(name) { document.querySelectorAll(`input[name="${name}"]:checked`).forEach(r => { r.checked = false; r.closest('label')?.classList.remove('selected-radio'); }); }
+
+    function disableAllAcaiAndAddonFieldsets() {
+          [fs.frutas, fs.cremes, fs.accomp, fs.cover, fs.askAdd, fs.add].forEach(f => {
+              disable(f); clearCheckboxes(f);
+          });
+          state.frutas = []; updateCounter(cnt.frutas, 0, '?');
+          state.cremes = []; updateCounter(cnt.cremes, 0, '?');
+          state.accomp = []; updateCounter(cnt.accomp, 0, '?');
+          state.cover = []; updateCounter(cnt.cover, 0, '?');
+          state.add = []; updateCounter(cnt.add, 0, 14, 'add');
+          state.wantAdd = undefined; clearRadios('wantAdd');
+    }
+
+    function resetPartialForItemSelection() {
+          state.produtoPrincipal = undefined;
+          state.size = undefined;
+          state.fMax = state.cMax = state.aMax = state.coMax = state.addMax = undefined;
+          state.frutas = []; state.cremes = []; state.accomp = []; state.cover = []; state.add = [];
+          state.wantAdd = undefined;
+          state.selectedSpecialFlavor = undefined;
+
+          [fs.frutas, fs.cremes, fs.accomp, fs.cover, fs.askAdd, fs.add, fs.specialProductFlavors].forEach(f => {
+              disable(f);
+              if (f.querySelectorAll('input[type="checkbox"]').length > 0) clearCheckboxes(f);
+              if (f.querySelectorAll('input[type="radio"]').length > 0) clearRadios(f.querySelector('input[type="radio"]').name);
+          });
+          updateCounter(cnt.frutas, 0, '?'); updateCounter(cnt.cremes, 0, '?');
+          updateCounter(cnt.accomp, 0, '?'); updateCounter(cnt.cover, 0, '?');
+          updateCounter(cnt.add, 0, 14, 'add');
+          
+          enable(fs.produtoPrincipal);
+          btnAdd.disabled = true;
+          btnFinish.disabled = orders.length === 0;
+    }
+
+    function validateCurrentOrderItem() {
+        if (!state.produtoPrincipal || !state.produtoPrincipal.type) return false;
+
+        if (state.produtoPrincipal.type === 'acai') {
+            const noneAddValue = 'Nenhum Adicional', noneValue = 'Nenhuma';
+            const checkSectionValidity = (fieldset, stateKey) => {
+                if (!fieldset || fieldset.hasAttribute('disabled')) return true;
+                const itemsSelected = state[stateKey];
+                if (!itemsSelected || itemsSelected.length === 0) return false;
+                const noneOptionValue = stateKey === 'add' ? noneAddValue : noneValue;
+                return !(itemsSelected.includes(noneOptionValue) && itemsSelected.length > 1);
+            };
+            let addOk = true;
+            if (fs.askAdd && !fs.askAdd.hasAttribute('disabled')) {
+                if (state.wantAdd === undefined) return false;
+                if (state.wantAdd === 'Sim') addOk = checkSectionValidity(fs.add, 'add');
+            }
+            return checkSectionValidity(fs.frutas, 'frutas') && checkSectionValidity(fs.cremes, 'cremes') && checkSectionValidity(fs.accomp, 'accomp') && checkSectionValidity(fs.cover, 'cover') && addOk;
+        
+        } else if (state.produtoPrincipal.type === 'produto_especial') {
+            const productData = allItemsData.produtos_especiais.find(p => p.id === state.produtoPrincipal.id);
+            if (productData?.requires_flavor_selection) {
+                return !!state.selectedSpecialFlavor;
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    // ... (o restante do seu código javascript antes desta função) ...
+
+   // Substitua esta função inteira no seu index.html
+
+// Substitua esta função inteira no seu código
+async function fetchAndApplyItemAvailability() {
+    try {
+        const response = await fetch('/api/items');
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar dados da API: ${response.statusText}`);
+        }
+        allItemsData = await response.json();
+
+        // --- Seção de lógica da loja fechada (sem alterações) ---
+        if (allItemsData.shopInfo && !allItemsData.shopInfo.isOpen) {
+            if (formCard) formCard.style.display = 'none';
+            if (shopClosedContainer) shopClosedContainer.style.display = 'block';
+            if (closedMessageEl && allItemsData.shopInfo.closedMessage) {
+                closedMessageEl.textContent = allItemsData.shopInfo.closedMessage;
+            }
+            return;
+        }
+        if (formCard) formCard.style.display = 'block';
+        if (shopClosedContainer) shopClosedContainer.style.display = 'none';
+
+        // --- Seção de renderização de itens (sem alterações) ---
+        if (allItemsData.frutas) renderDynamicCheckboxes('boxFrutas', 'frutas', allItemsData.frutas, 'Nenhuma das opções');
+        if (allItemsData.cremes) renderDynamicCheckboxes('boxCremes', 'cremes', allItemsData.cremes, 'Nenhuma das opções');
+        if (allItemsData.acompanhamentos) renderDynamicCheckboxes('boxAccomp', 'acompanhamentos', allItemsData.acompanhamentos, 'Nenhuma das opções');
+        if (allItemsData.coberturas) renderDynamicCheckboxes('boxCoverage', 'coberturas', allItemsData.coberturas, 'Nenhuma das opções');
+        if (allItemsData.adicionais) renderDynamicCheckboxes('boxAdd', 'add', allItemsData.adicionais, 'Nenhum Adicional');
+        renderProdutosPrincipais();
+
+        // --- Configuração dos listeners e habilitação de campos (sem alterações) ---
+        setupProdutoPrincipalListeners();
+        setupRadioListener('payment');
+        clientNameInput.addEventListener('input', checkIfCanFinish);
+        addressInput.addEventListener('input', checkIfCanFinish);
+        enable(fs.clientName);
+        enable(fs.payment);
+
+        // --- LÓGICA DE ENTREGA CORRIGIDA ---
+        const deliveryIsAvailable = allItemsData.shopInfo?.isDeliveryAvailable !== false;
+        const deliveryRadios = document.querySelectorAll('input[name="delivery"]');
+
+        deliveryRadios.forEach(radio => {
+            const label = radio.closest('label');
+            if (!label) return;
+
+            // Tratamento para a opção "Retirada"
+            if (radio.value === 'Retirada') {
+                radio.disabled = false;
+                label.classList.remove('disabled-item');
+                label.style.textDecoration = '';
+                label.style.color = '';
+                label.style.cursor = 'pointer';
+            }
+            // Tratamento para qualquer outra opção (as de entrega)
+            else { // <<< AQUI ESTÁ A CORREÇÃO EFETIVA
+                if (deliveryIsAvailable) {
+                    // Habilita a opção de entrega
+                    radio.disabled = false;
+                    label.classList.remove('disabled-item');
+                    label.style.textDecoration = '';
+                    label.style.color = '';
+                    label.style.cursor = 'pointer';
+                } else {
+                    // Desabilita a opção de entrega e FORÇA o estilo visual
+                    radio.disabled = true;
+                    label.classList.add('disabled-item');
+                    label.style.textDecoration = 'line-through';
+                    label.style.color = '#aaa';
+                    label.style.cursor = 'not-allowed';
+                }
+            }
+        });
+
+        // Configura os listeners de clique após a manipulação
+        setupRadioListener('delivery');
+
+    } catch (error) {
+        console.error("Erro ao carregar o cardápio:", error);
+        alert("Erro ao carregar o cardápio. Por favor, recarregue a página.");
+    }
+}
+    // ... (o restante do seu código javascript depois desta função) ...
+
+    function renderProdutosPrincipais() {
+        if (!boxProdutosPrincipais) return;
+        boxProdutosPrincipais.innerHTML = '';
+
+        const acaiProducts = [
+            { id: 'size-300', name: 'Copo Pequeno (300ml)', price: 10.00, img: '/images/copo-pequeno.jpg', desc: 'Até 1 fruta, até 1 creme,<br>até 3 acompanhamentos,<br>até 1 cobertura', available: true },
+            { id: 'size-500', name: 'Copo Grande (500ml)', price: 15.00, img: '/images/copo-grande.jpg', desc: 'Até 2 frutas, até 2 cremes,<br>até 3 acompanhamentos,<br>até 1 cobertura', available: true },
+            { id: 'size-1L', name: 'Pote da Felicidade (1 litro)', price: 40.00, img: '/images/pote-felicidade.jpg', desc: 'Até 3 frutas, até 3 cremes,<br>até 4 acompanhamentos,<br>até 2 coberturas', available: true }
+        ];
+
+        acaiProducts.forEach(prod => { boxProdutosPrincipais.innerHTML += createProductCardHTML(prod, 'acai'); });
+        (allItemsData.produtos_especiais || []).forEach(prod => { boxProdutosPrincipais.innerHTML += createProductCardHTML(prod, 'produto_especial'); });
+    }
+
+    function createProductCardHTML(prod, type) {
+        const disabledClass = !prod.available ? 'disabled-item' : '';
+        const inputDisabled = !prod.available ? 'disabled' : '';
+        const title = !prod.available ? 'Produto indisponível' : '';
+        const inputId = `prod-${prod.id}`; 
+        
+        return `
+            <label class="produto-card ${disabledClass}" for="${inputId}" data-product-type="${type}" data-product-id="${prod.id}" data-price="${prod.price}" title="${title}">
+                <img src="${prod.img || '/images/default-product.png'}" alt="${prod.name}" />
+                <input type="radio" name="produtoPrincipal" value="${prod.name}" id="${inputId}" required ${inputDisabled}/>
+                <div>
+                    <strong>${prod.name}</strong> - R$ ${prod.price.toFixed(2).replace('.', ',')}
+                    <span>${prod.desc || prod.description || ''}</span>
+                </div>
+            </label>
+        `;
+    }
+
+    function updateAndRenderFlavors(product) {
+        if (!fs.specialProductFlavors || !product || !product.flavors) {
+            disable(fs.specialProductFlavors);
+            return;
+        }
+
+        const legend = fs.specialProductFlavors.querySelector('legend');
+        if (legend) legend.innerHTML = `2. Escolha o Sabor de ${product.name} <span class="section-status">(Obrigatório)</span>`;
+
+        boxSpecialProductFlavors.innerHTML = '';
+        product.flavors.forEach(flavor => {
+            const flavorDisabled = !flavor.available ? 'disabled' : '';
+            const labelClass = !flavor.available ? 'disabled-item' : '';
+            const title = !flavor.available ? 'Sabor indisponível' : '';
+            boxSpecialProductFlavors.innerHTML += `
+                <label for="flavor-${flavor.id}" class="${labelClass}" title="${title}">
+                    <input type="radio" name="specialFlavor" value="${flavor.name}" id="flavor-${flavor.id}" data-flavor-id="${flavor.id}" required ${flavorDisabled} />
+                    <span>${flavor.name}</span>
+                    ${flavor.internal_description ? `<small>(${flavor.internal_description})</small>` : ''}
+                </label>`;
+        });
+        
+        setupRadioListener('specialFlavor');
+    }
+
+    function setupProdutoPrincipalListeners() {
+        document.querySelectorAll('input[name="produtoPrincipal"]').forEach(radio => {
+            if (radio.disabled) return;
+            if (radio._productListener) radio.removeEventListener('change', radio._productListener);
+            
+            const newProductListener = (e) => {
+                document.querySelectorAll('.produto-card').forEach(label => label.classList.remove('selected'));
+                e.target.closest('.produto-card:not(.disabled-item)')?.classList.add('selected');
+
+                const savedPayment = state.payment;
+                const savedDelivery = state.delivery;
+                resetPartialForItemSelection(); 
+                state.payment = savedPayment;
+                state.delivery = savedDelivery;
+                if (state.payment) document.querySelector(`input[name="payment"][value="${state.payment}"]`)?.closest('label')?.classList.add('selected-radio');
+                if (state.delivery) {
+                    const deliveryRadio = document.querySelector(`input[name="delivery"][value="${state.delivery}"]`);
+                    if(deliveryRadio) {
+                        deliveryRadio.closest('label')?.classList.add('selected-radio');
+                        if(state.delivery !== 'Retirada') fs.address.style.display = 'block';
+                    }
+                }
+                if (pixInfoDiv) pixInfoDiv.classList.toggle('hidden', state.payment !== 'Pix');
+
+                const selectedCard = e.target.closest('.produto-card');
+                const productType = selectedCard?.dataset.productType;
+                const productName = e.target.value;
+                const productPrice = parseFloat(selectedCard?.dataset.price || 0);
+                const productId = selectedCard?.dataset.productId; 
+
+                state.produtoPrincipal = { type: productType, name: productName, price: productPrice, id: productId };
+
+                if (productType === 'acai') {
+                    disable(fs.specialProductFlavors);
+                    clearRadios('specialFlavor');
+                    state.selectedSpecialFlavor = undefined;
+
+                    let fMax = 0, cMax = 0, aMax = 0, coMax = 0;
+                    if (productId === 'size-300') { fMax = 1; cMax = 1; aMax = 3; coMax = 1; }
+                    else if (productId === 'size-500') { fMax = 2; cMax = 2; aMax = 3; coMax = 1; }
+                    else if (productId === 'size-1L') { fMax = 3; cMax = 3; aMax = 4; coMax = 2; }
+                    state.fMax = fMax; state.cMax = cMax; state.aMax = aMax; state.coMax = coMax; state.addMax = 14;
+
+                    [fs.frutas, fs.cremes, fs.accomp, fs.cover, fs.askAdd].forEach(enable);
+                    setupChecks(fs.frutas, fMax, 'frutas');
+                    setupChecks(fs.cremes, cMax, 'cremes');
+                    setupChecks(fs.accomp, aMax, 'accomp');
+                    setupChecks(fs.cover, coMax, 'cover');
+                    setupRadioListener('wantAdd', 'askAdd');
+                
+                } else if (productType === 'produto_especial') {
+                    disableAllAcaiAndAddonFieldsets();
+                    const productData = allItemsData.produtos_especiais.find(p => p.id === productId);
+
+                    if (productData && productData.requires_flavor_selection && productData.flavors?.length > 0) {
+                        updateAndRenderFlavors(productData);
+                        enable(fs.specialProductFlavors);
+                    } else {
+                        disable(fs.specialProductFlavors);
+                        clearRadios('specialFlavor');
+                        state.selectedSpecialFlavor = undefined;
+                    }
+                }
+                checkIfCanFinish();
+            };
+            radio.addEventListener('change', newProductListener);
+            radio._productListener = newProductListener;
+        });
+    }
+
+   // Substitua esta função inteira no seu index.html
+
+function setupRadioListener(name, stageToAdvanceOnClick) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+        if (r.disabled) return;
+        if (r._currentListener) r.removeEventListener('change', r._currentListener);
+        
+        const new_listener = ev => {
+            const value = ev.target.value;
+            if (name === 'specialFlavor') state.selectedSpecialFlavor = value;
+            else state[name] = value;
+            
+            document.querySelectorAll(`input[name="${name}"]`).forEach(radioEl => radioEl.closest('label')?.classList.remove('selected-radio'));
+            ev.target.closest('label:not(.disabled-item)')?.classList.add('selected-radio');
+
+            // ===== INÍCIO DA LÓGICA CORRIGIDA =====
+            if (name === 'delivery') {
+                // Verifica se a opção é de entrega E se a entrega está disponível no sistema
+                const isDeliveryOption = value !== 'Retirada';
+                const isDeliveryGloballyAvailable = allItemsData.shopInfo?.isDeliveryAvailable !== false;
+
+                if (isDeliveryOption && isDeliveryGloballyAvailable) {
+                    // Só mostra o campo de endereço se as duas condições forem verdadeiras
+                    fs.address.style.display = 'block';
+                    enable(fs.address);
+                } else {
+                    // Esconde o campo em todos os outros casos (Retirada ou Entrega Indisponível)
+                    fs.address.style.display = 'none';
+                    addressInput.value = '';
+                }
+            }
+            // ===== FIM DA LÓGICA CORRIGIDA =====
+
+            if (name === 'wantAdd' && stageToAdvanceOnClick) advanceStage(stageToAdvanceOnClick);
+            if (name === 'payment' && pixInfoDiv) pixInfoDiv.classList.toggle('hidden', value !== 'Pix');
+            
+            checkIfCanFinish();
+        };
+        r.addEventListener('change', new_listener);
+        r._currentListener = new_listener;
+    });
+}
+
+    function setupChecks(fieldsetElement, max, key) { 
+        const box = fieldsetElement.querySelector('.grid-2'); 
+        if (!box) return;
+        
+        const counterEl = cnt[key];
+        const allCheckboxesInBox = box.querySelectorAll('input[type=checkbox]');
+        const noneValue = key === 'add' ? 'Nenhum Adicional' : 'Nenhuma';
+        const noneCheckbox = box.querySelector(`input[value="${noneValue}"]`);
+
+        state[key] = state[key] || [];
+        state[key] = state[key].filter(itemName => {
+            const chk = Array.from(allCheckboxesInBox).find(c => c.value === itemName);
+            return chk && !chk.disabled;
+        });
+        
+        if (fieldsetElement && !fieldsetElement.hasAttribute('disabled')) {
+            if (state[key].length === 0 && noneCheckbox && !noneCheckbox.disabled) {
+                noneCheckbox.checked = true;
+                state[key] = [noneValue]; 
+            }
+        }
+
+        let initialCount = state[key].includes(noneValue) ? 0 : state[key].filter(item => item !== noneValue).length;
+        updateCounter(counterEl, initialCount, max, key);
+
+        allCheckboxesInBox.forEach(chk => {
+            if (chk._currentListener) chk.removeEventListener('change', chk._currentListener);
+            
+            const new_listener = () => {
+                if (chk.disabled && !chk.value.toLowerCase().includes("nenhum")) return;
+
+                const currentSelectedInBox = [...box.querySelectorAll('input[type=checkbox]:checked:not([disabled])')];
+                const isNoneChecked = noneCheckbox && noneCheckbox.checked;
+
+                if (noneCheckbox) {
+                    if (chk === noneCheckbox && chk.checked) {
+                        allCheckboxesInBox.forEach(otherChk => { if (otherChk !== noneCheckbox && !otherChk.disabled) otherChk.checked = false; });
+                        state[key] = [noneValue];
+                    } else if (chk !== noneCheckbox && chk.checked && isNoneChecked) {
+                        if (!noneCheckbox.disabled) noneCheckbox.checked = false;
+                        state[key] = currentSelectedInBox.filter(c => c !== noneCheckbox).map(i => i.value);
+                    } else {
+                        state[key] = currentSelectedInBox.map(i => i.value);
+                        if (state[key].length === 0 && noneCheckbox && !noneCheckbox.disabled) {
+                            noneCheckbox.checked = true; state[key] = [noneValue];
+                        } else if (state[key].length > 0 && state[key].some(val => val !== noneValue) && noneCheckbox && noneCheckbox.checked && !noneCheckbox.disabled) {
+                            noneCheckbox.checked = false;
+                            state[key] = state[key].filter(item => item !== noneValue);
+                        }
+                    }
+                } else {
+                    state[key] = currentSelectedInBox.map(i => i.value);
+                }
+
+                let actualSelectedCount = state[key].includes(noneValue) ? 0 : state[key].filter(item => item !== noneValue).length;
+
+if (key !== 'add' && max !== undefined && actualSelectedCount > max) {                    chk.checked = false;
+                    state[key] = state[key].filter(item => item !== chk.value);
+                    if (state[key].length === 0 && noneCheckbox && !noneCheckbox.disabled) {
+                        noneCheckbox.checked = true; state[key] = [noneValue];
+                    }
+                    actualSelectedCount = state[key].includes(noneValue) ? 0 : state[key].filter(item => item !== noneValue).length;
+                    alert(`Máximo ${max} ${key === 'add' ? 'adicionais' : key}.`);
+                }
+
+            updateCounter(counterEl, actualSelectedCount, max, key);
+                checkIfCanFinish();
+            };
+            chk.addEventListener('change', new_listener);
+            chk._currentListener = new_listener;
+        });
+    }
+
+    function updateCounter(element, count, max, key) {
+    if (element) {
+        if (key === 'add') {
+            // Para os adicionais, mostra apenas a contagem atual
+            element.textContent = `( ${count} )`;
+        } else {
+            // Para todos os outros, mantém o formato original com o máximo
+            element.textContent = `( ${count} / ${max !== undefined ? max : '?'} )`;
+        }
+    }
+}
+
+    function advanceStage(stage) {
+        if (stage === 'askAdd') {
+            if (state.wantAdd === 'Sim') {
+                enable(fs.add);
+                setupChecks(fs.add, state.addMax !== undefined ? state.addMax : 14, 'add');
+                const currentAddCount = state.add ? state.add.filter(item => item !== 'Nenhum Adicional').length : 0;
+                updateCounter(cnt.add, currentAddCount, state.addMax !== undefined ? state.addMax : 14, 'add');
+            } else if (state.wantAdd === 'Não') {
+                state.add = ['Nenhum Adicional'];
+                disable(fs.add);
+                clearCheckboxes(fs.add);
+                updateCounter(cnt.add, 0, state.addMax !== undefined ? state.addMax : 14,'add');
+            }
+        }
+        checkIfCanFinish();
+    }
+
+// Substitua esta função para o ajuste final de consistência
+function checkIfCanFinish() {
+    const itemValid = validateCurrentOrderItem();
+    const clientNameFilled = clientNameInput.value.trim() !== '';
+    const paymentSelected = !!state.payment;
+    const deliverySelected = !!state.delivery;
+
+    // --- INÍCIO DA LÓGICA DE VALIDAÇÃO 100% CORRIGIDA ---
+    let addressOk = false;
+    if (deliverySelected) {
+        // Se a opção for Retirada, o endereço está sempre OK.
+        if (state.delivery === 'Retirada') {
+            addressOk = true;
+        } 
+        // Se for qualquer outra opção (de entrega), só está OK se o endereço estiver preenchido.
+        else {
+            addressOk = addressInput.value.trim() !== '';
+        }
+    }
+    // --- FIM DA CORREÇÃO ---
+
+    const canProceed = itemValid && clientNameFilled && paymentSelected && deliverySelected && addressOk;
+    btnAdd.disabled = !canProceed;
+
+    const hasItemsInCart = orders.length > 0;
+    const globalFieldsOkForFinish = clientNameFilled && paymentSelected && deliverySelected && addressOk;
+
+    btnFinish.disabled = !((hasItemsInCart && globalFieldsOkForFinish) || canProceed);
+}
+
+    function renderOrders() {
+        ordersSec.style.display = orders.length > 0 ? 'block' : 'none';
+        ordersList.innerHTML = '';
+        let totalGeralItensPagina = 0;
+        let taxaEntregaPagina = 0;
+        let localEntregaPagina = "Retirada";
+
+        orders.forEach((orderItem, i) => {
+            const li = document.createElement('li');
+            let itemDetailsHtml = '';
+            let subTotalItem = orderItem.produtoPrincipal?.price || 0;
+
+            if (orderItem.produtoPrincipal?.type === 'produto_especial') {
+                itemDetailsHtml += orderItem.selectedSpecialFlavor ? `Sabor: ${orderItem.selectedSpecialFlavor}` : `(Produto sem opções adicionais)`;
+            } else { 
+                itemDetailsHtml += `Frutas: ${orderItem.frutas?.join(', ') || 'Nenhuma'}<br>Cremes: ${orderItem.cremes?.join(', ') || 'Nenhum'}<br>Acompanhamentos: ${orderItem.accomp?.join(', ') || 'Nenhum'}<br>Coberturas: ${orderItem.cover?.join(', ') || 'Nenhum'}<br>`;
+                if (orderItem.add && !orderItem.add.includes('Nenhum Adicional')) {
+                    itemDetailsHtml += `Adicionais: ${orderItem.add.map(item => item.split(' - R$ ')[0]).join(', ')}`;
+                    orderItem.add.forEach(addon => { if (addon.includes('R$')) subTotalItem += parseFloat(addon.match(/R\$ (\d+[,.]\d{2})/)[1].replace(',', '.')); });
+                } else {
+                    itemDetailsHtml += `Adicionais: Nenhum Adicional`;
+                }
+            }
+            
+            li.innerHTML = `
+                <div class="order-item-header">
+                    <strong>Item ${i + 1}: ${orderItem.produtoPrincipal?.name || 'Item'}</strong>
+                    <button class="repeat-item-btn" data-index="${i}">🔁 Repetir Item</button>
+                </div>
+                ${itemDetailsHtml}<br>
+                <strong>Subtotal do Item: R$ ${subTotalItem.toFixed(2).replace('.', ',')}</strong>
+            `;
+            totalGeralItensPagina += subTotalItem;
+
+            if (i === 0 && orderItem.delivery) {
+                localEntregaPagina = orderItem.delivery.split(' - R$ ')[0];
+                if (orderItem.delivery.includes('R$')) {
+                    const deliveryPriceMatch = orderItem.delivery.match(/R\$ (\d+[,.]\d{2})/);
+                    if (deliveryPriceMatch) taxaEntregaPagina = parseFloat(deliveryPriceMatch[1].replace(',', '.'));
+                }
+            }
+            ordersList.appendChild(li);
+        });
+
+        document.querySelectorAll('.repeat-item-btn').forEach(btn => btn.addEventListener('click', (e) => repeatOrderItem(parseInt(e.target.dataset.index, 10))));
+        
+        const totalFinalPagina = localEntregaPagina !== "Retirada" ? totalGeralItensPagina + taxaEntregaPagina : totalGeralItensPagina;
+        if (orderPageTotalValueEl) orderPageTotalValueEl.textContent = totalFinalPagina.toFixed(2).replace('.', ',');
+    }
+    
+    function repeatOrderItem(index) {
+        if (index > -1 && index < orders.length) {
+            orders.splice(index + 1, 0, JSON.parse(JSON.stringify(orders[index])));
+            renderOrders();
+            checkIfCanFinish();
+        }
+    }
+
+    function generateSummaryText() {
+        if (orders.length === 0) return "Nenhum item no pedido.";
+
+        const clientName = clientNameInput.value.trim();
+        const address = addressInput.value.trim();
+        let summaryText = `Blue Açaí - *Novo Pedido!*\n\n*Cliente:* ${clientName}\n`;
+
+        if (orders[0].delivery !== 'Retirada' && address) {
+            summaryText += `*Endereço:* ${address}\n`;
+        }
+        summaryText += "------------------------------\n\n";
+
+        let totalGeralPedido = 0, deliveryFee = 0, deliveryLocation = "Retirada";
+        const paymentMethod = orders[0].payment || "Não especificado";
+
+        orders.forEach((orderItem, i) => {
+            let subTotalItem = orderItem.produtoPrincipal?.price || 0;
+            summaryText += `*Item ${i + 1}: ${orderItem.produtoPrincipal?.name}*\n`;
+
+            if (orderItem.produtoPrincipal?.type === 'produto_especial') {
+                if (orderItem.selectedSpecialFlavor) summaryText += `Sabor: ${orderItem.selectedSpecialFlavor}\n`;
+            } else {
+                summaryText += `Frutas: ${orderItem.frutas?.includes('Nenhuma') ? 'Nenhuma' : orderItem.frutas?.join(', ') || 'N/A'}\n`;
+                summaryText += `Cremes: ${orderItem.cremes?.includes('Nenhuma') ? 'Nenhuma' : orderItem.cremes?.join(', ') || 'N/A'}\n`;
+                summaryText += `Acompanhamentos: ${orderItem.accomp?.includes('Nenhuma') ? 'Nenhuma' : orderItem.accomp?.join(', ') || 'N/A'}\n`;
+                summaryText += `Coberturas: ${orderItem.cover?.includes('Nenhuma') ? 'Nenhuma' : orderItem.cover?.join(', ') || 'N/A'}\n`;
+                if (orderItem.add && !orderItem.add.includes('Nenhum Adicional')) {
+                    summaryText += `Adicionais: ${orderItem.add.map(a => a.split(' - R$ ')[0].toUpperCase()).join(', ')}\n`;
+                    orderItem.add.forEach(addon => { if (addon.includes('R$')) subTotalItem += parseFloat(addon.match(/R\$ (\d+[,.]\d{2})/)[1].replace(',', '.')); });
+                } else {
+                    summaryText += `Adicionais: Nenhum Adicional\n`;
+                }
+            }
+            summaryText += `Subtotal do Item: R$ ${subTotalItem.toFixed(2).replace('.', ',')}\n\n`;
+            totalGeralPedido += subTotalItem;
+
+            if (i === 0) {
+                deliveryLocation = orderItem.delivery ? orderItem.delivery.split(' - R$ ')[0] : "Retirada";
+                if (orderItem.delivery?.includes('R$')) {
+                    const deliveryPriceMatch = orderItem.delivery.match(/R\$ (\d+[,.]\d{2})/);
+                    if (deliveryPriceMatch) deliveryFee = parseFloat(deliveryPriceMatch[1].replace(',', '.'));
+                }
+            }
+        });
+
+        summaryText += `------------------------------\n`;
+        summaryText += `*Forma de Pagamento:* ${paymentMethod}\n`;
+        summaryText += `*Entrega/Retirada:* ${deliveryLocation}\n`;
+        if (deliveryLocation !== "Retirada" && deliveryFee > 0) {
+            summaryText += `*Taxa de Entrega:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+            totalGeralPedido += deliveryFee;
+        }
+        summaryText += `\n*TOTAL GERAL DO PEDIDO: R$ ${totalGeralPedido.toFixed(2).replace('.', ',')}*`;
+        summaryEl.textContent = summaryText;
+        return summaryText;
+    }
+
+    // ##### BOTÃO 'ADICIONAR' CORRIGIDO #####
+    btnAdd.onclick = () => {
+        if (btnAdd.disabled) return; // Não faz nada se o botão estiver desabilitado
+
+        state.address = addressInput.value.trim();
+        orders.push(JSON.parse(JSON.stringify(state)));
+        renderOrders();
+        
+        const savedPayment = state.payment;
+        const savedDelivery = state.delivery;
+        resetPartialForItemSelection();
+        state.payment = savedPayment;
+        state.delivery = savedDelivery;
+        
+        if (savedPayment) document.querySelector(`input[name="payment"][value="${savedPayment}"]`)?.closest('label')?.classList.add('selected-radio');
+        if (savedDelivery) {
+            const deliveryRadio = document.querySelector(`input[name="delivery"][value="${savedDelivery}"]`);
+            if (deliveryRadio) {
+                deliveryRadio.closest('label')?.classList.add('selected-radio');
+                if (savedDelivery !== 'Retirada') {
+                    fs.address.style.display = 'block';
+                    enable(fs.address);
+                }
+            }
+        }
+        if (pixInfoDiv && state.payment === 'Pix') pixInfoDiv.classList.remove('hidden'); else if (pixInfoDiv) pixInfoDiv.classList.add('hidden');
+        
+        document.querySelectorAll('.produto-card.selected').forEach(card => card.classList.remove('selected'));
+        clearRadios('produtoPrincipal');
+
+        checkIfCanFinish();
+    };
+
+    btnFinish.onclick = async () => {
+        if (btnFinish.disabled) {
+            alert("Por favor, complete todos os campos obrigatórios para finalizar o pedido.");
+            return;
+        }
+        
+        const currentItemIsPending = !!state.produtoPrincipal;
+        if (currentItemIsPending) {
+             state.address = addressInput.value.trim();
+             orders.push(JSON.parse(JSON.stringify(state)));
+        }
+        
+        if (orders.length > 0) {
+            renderOrders();
+            const summaryTextContent = generateSummaryText();
+            const phoneNumber = '5598985016035';
+            const encodedText = encodeURIComponent(summaryTextContent);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+            
+            alert("Pedido finalizado! Você será redirecionado para o WhatsApp.");
+            window.location.href = whatsappURL;
+            await resetForm(); 
+
+        } else {
+            alert("Adicione e configure um item corretamente antes de finalizar.");
+        }
+    };
+
+    btnCancel.onclick = async () => {
+        if (confirm("Tem certeza que deseja cancelar o pedido e limpar todas as seleções?")) {
+            await resetForm();
+        }
+    };
+
+    async function resetForm() {
+        state = {}; orders = [];
+        form.reset();
+        clientNameInput.value = '';
+        addressInput.value = '';
+        fs.address.style.display = 'none';
+        renderOrders();
+        if(pixInfoDiv) pixInfoDiv.classList.add('hidden');
+        
+        document.querySelectorAll('.selected-radio, .produto-card.selected').forEach(el => el.classList.remove('selected', 'selected-radio'));
+        
+        const allFieldsets = form.querySelectorAll('fieldset');
+        allFieldsets.forEach(fset => {
+            if (!['fsProdutoPrincipal', 'fsClientName', 'fsPayment', 'fsDelivery'].includes(fset.id)) {
+                 disable(fset);
+            }
+        });
+        disable(fs.specialProductFlavors);
+        
+        await fetchAndApplyItemAvailability();
+        
+        updateCounter(cnt.frutas, 0, '?'); updateCounter(cnt.cremes, 0, '?');
+        updateCounter(cnt.accomp, 0, '?'); updateCounter(cnt.cover, 0, '?');
+        updateCounter(cnt.add, 0, 14, 'add');
+
+        btnAdd.disabled = true; btnFinish.disabled = true;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => { resetForm(); });
+</script>
+</body>
+</html>

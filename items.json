@@ -1,0 +1,369 @@
+{
+  "shopInfo": {
+    "isOpen": true,
+    "isDeliveryAvailable": true,
+    "closedMessage": "Horário de Funcionamento da Blue Açaí\n\nSegunda-feira:\nManhã: das 08h30 às 11h00.\nNoite: das 18h00 às 21h30.\n\nTerça-feira: Fechados.\n\nQuarta-feira:\nManhã: das 08h30 às 11h00.\nNoite: das 18h30 às 21h30.\n\nQuinta-feira:\nNoite: das 18h30 às 21h30.\n\nSexta-feira:\nManhã: das 08h30 às 11h00.\nNoite: das 18h00 às 21h30.\n\nSábado e Domingo:\nNoite: das 18h30 às 21h30.\n\nEstamos localizados na Rua do Porto, Outeiro-Cedral, com opções de retirada na loja ou delivery. Esperamos por você!"
+  },
+  "frutas": [
+    {
+      "id": "morango",
+      "name": "Morango",
+      "available": true
+    },
+    {
+      "id": "banana",
+      "name": "Banana",
+      "available": true
+    },
+    {
+      "id": "kiwi",
+      "name": "Kiwi",
+      "available": true
+    },
+    {
+      "id": "maca",
+      "name": "Maçã",
+      "available": true
+    },
+    {
+      "id": "uva",
+      "name": "Uva",
+      "available": true
+    }
+  ],
+  "cremes": [
+    {
+      "id": "ninho",
+      "name": "Ninho",
+      "available": true
+    },
+    {
+      "id": "ninho_zero_lactose",
+      "name": "Ninho Zero Lactose",
+      "available": true
+    },
+    {
+      "id": "maracuja",
+      "name": "Maracujá",
+      "available": true
+    },
+    {
+      "id": "morango_creme",
+      "name": "Morango (Creme)",
+      "available": true
+    },
+    {
+      "id": "abacaxi",
+      "name": "Abacaxi",
+      "available": true
+    },
+    {
+      "id": "tutti_frutti_creme",
+      "name": "Tutti Frutti (Creme)",
+      "available": false
+    },
+    {
+      "id": "chocolate_avela",
+      "name": "Chocolate c/Avelã",
+      "available": true
+    }
+  ],
+  "acompanhamentos": [
+    {
+      "id": "amendoim_acomp",
+      "name": "Amendoim",
+      "available": true
+    },
+    {
+      "id": "pacoca_acomp",
+      "name": "Paçoca",
+      "available": true
+    },
+    {
+      "id": "granola_acomp",
+      "name": "Granola",
+      "available": true
+    },
+    {
+      "id": "farinha_lactea_acomp",
+      "name": "Farinha Láctea",
+      "available": true
+    },
+    {
+      "id": "leite_po_acomp",
+      "name": "Leite em Pó",
+      "available": true
+    },
+    {
+      "id": "confetes_acomp",
+      "name": "Confetes",
+      "available": true
+    },
+    {
+      "id": "tapioca_acomp",
+      "name": "Tapioca",
+      "available": true
+    },
+    {
+      "id": "uva_passa_acomp",
+      "name": "Uva Passa",
+      "available": true
+    }
+  ],
+  "coberturas": [
+    {
+      "id": "chocolate_cob",
+      "name": "Chocolate",
+      "available": true
+    },
+    {
+      "id": "morango_cob",
+      "name": "Morango (Cobertura)",
+      "available": true
+    },
+    {
+      "id": "leite_condensado_cob",
+      "name": "Leite Condensado",
+      "available": true
+    },
+    {
+      "id": "tutti_frutti_cob",
+      "name": "Tutti Frutti (Cobertura)",
+      "available": true
+    },
+    {
+      "id": "ice_blue_cob",
+      "name": "Ice Blue",
+      "available": true
+    },
+    {
+      "id": "kiwi_cob",
+      "name": "Kiwi (Cobertura)",
+      "available": true
+    }
+  ],
+  "adicionais": [
+    {
+      "id": "ovomaltine_add",
+      "name": "Ovomaltine - R$ 2.00",
+      "originalValue": "Ovomaltine - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "escureto_add",
+      "name": "Escureto - R$ 1.00",
+      "originalValue": "Escureto - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "chocoball_add",
+      "name": "Chocoball - R$ 1.00",
+      "originalValue": "Chocoball - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "amendoim_add",
+      "name": "Amendoim (Adicional) - R$ 1.00",
+      "originalValue": "Amendoim - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "pacoca_add",
+      "name": "Paçoca (Adicional) - R$ 1.00",
+      "originalValue": "Paçoca - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "granola_add",
+      "name": "Granola (Adicional) - R$ 1.00",
+      "originalValue": "Granola - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "farinha_lactea_add",
+      "name": "Farinha Láctea (Adicional) - R$ 1.00",
+      "originalValue": "Farinha Láctea - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "leite_po_add",
+      "name": "Leite em pó (Adicional) - R$ 2.00",
+      "originalValue": "Leite em pó - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "confetes_add",
+      "name": "Confetes (Adicional) - R$ 1.00",
+      "originalValue": "Confetes - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "tapioca_add",
+      "name": "Tapioca (Adicional) - R$ 1.00",
+      "originalValue": "Tapioca - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "uva_passa_add",
+      "name": "Uva Passa (Adicional) - R$ 1.00",
+      "originalValue": "Uva Passa - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "mms_add",
+      "name": "M&MS - R$ 2.00",
+      "originalValue": "M&MS - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "jujubas_add",
+      "name": "Jujubas - R$ 1.00",
+      "originalValue": "Jujubas - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "marshmallow_add",
+      "name": "Marshmallow - R$ 1.00",
+      "originalValue": "Marshmallow - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "doce_leite_add",
+      "name": "Doce de leite - R$ 1.00",
+      "originalValue": "Doce de leite - R$ 1.00",
+      "available": true
+    },
+    {
+     "id": "morango_add",
+      "name": "Morango - R$ 1.00",
+      "originalValue": "Morango - R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "banana_add",
+      "name": "Banana - R$ 1.00",
+      "originalValue": "Banana - R$ 1.00",
+      "available": true
+    },
+    {
+       "id": "kiwi_add",
+      "name": "Kiwi - R$ 1.00",
+      "originalValue": "Kiwi - R$ 1.00",
+      "available": true
+    },
+    {
+       "id": "maçã_add",
+      "name": "Maçã - R$ 1.00",
+      "originalValue": "Maçã - R$ 1.00",
+      "available": true
+    },
+    {
+       "id": "uva_add",
+      "name": "Uva - R$ 1.00",
+      "originalValue": "Uva- R$ 1.00",
+      "available": true
+    },
+    {
+      "id": "ninho_creme_add",
+      "name": "Ninho (Creme) - R$ 2.00",
+      "originalValue": "Ninho - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "ninho_creme_zero_lactose_add",
+      "name": "Ninho Zero Lactose (Creme) - R$ 2.00",
+      "originalValue": "Ninho - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "maracuja_creme_add",
+      "name": "Maracujá (Creme) - R$ 2.00",
+      "originalValue": "Maracujá (Creme) - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "morango_creme_add_extra",
+      "name": "Morango (Creme) - R$ 2.00",
+      "originalValue": "Morango (Creme) - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "Abacaxi_creme_add",
+      "name": "Abacaxi (Creme) - R$ 2.00",
+      "originalValue": "Tutti Frutti (Creme) - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "tutti_frutti_creme_add",
+      "name": "Tutti Frutti (Creme) - R$ 2.00",
+      "originalValue": "Tutti Frutti (Creme) - R$ 2.00",
+      "available": false
+    },
+    {
+      "id": "chocolate_avela_add",
+      "name": "Chocolate c/Avelã (Creme) - R$ 2.00",
+      "originalValue": "Chocolate c/Avelã (Creme) - R$ 2.00",
+      "available": true
+    }
+  ],
+  "produtos_especiais": [
+    {
+      "id": "copo_felicidade",
+      "name": "Copo da Felicidade",
+      "description": "Uma experiência única em camadas de sabor.",
+      "price": 8.00,
+      "img": "/images/copo-felicidade.jpg",
+      "available": false,
+      "requires_flavor_selection": true,
+      "flavors": [
+        {
+          "id": "Delícia",
+          "name": "Delícia",
+          "internal_description": "Doce de leite + ganache + escureto",
+          "available": true
+        },
+        {
+          "id": "floresta_negra",
+          "name": "Floresta Negra",
+          "internal_description": "creme especial + floresta negra",
+          "available": false
+        },
+        {
+          "id": "flocos",
+          "name": "Flocos Delícia",
+          "internal_description": "creme especial + flocos",
+          "available": false
+        }
+      ]
+    },
+    {
+      "id": "fatia_bolo_doce_amor",
+      "name": "Fatia de Bolo 'Doce Amor'",
+      "description": "Deliciosas fatias de bolo para adoçar o seu dia.",
+      "price": 7.00,
+      "img": "/images/fatia-bolo-doce-amor.jpg",
+      "available": false,
+      "requires_flavor_selection": true,
+      "flavors": [
+        {
+          "id": "Fatia",
+          "name": "Fatia recheada",
+          "internal_description": "Massa branca com recheio de doce de leite e ganache e cobertura de creme de bobom garoto.",
+          "available": true
+        },
+        {
+          "id": "prestigio",
+          "name": "Prestígio",
+          "internal_description": "Massa de chocolate com recheio cremoso de coco.",
+          "available": false
+        },
+        {
+          "id": "ninho_nutella",
+          "name": "Ninho com Nutella",
+          "internal_description": "Massa branca com recheio de Ninho e Nutella.",
+          "available": false
+        }
+      ]
+    }
+  ]
+}

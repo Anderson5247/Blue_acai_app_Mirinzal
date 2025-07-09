@@ -1,1 +1,2 @@
-# Blue_acai_app_Mirinzal
+# Blue_acai_app
+loja de açai 2.0
