@@ -312,7 +312,7 @@
       "name": "Copo da Felicidade",
       "description": "Uma experiência única em camadas de sabor.",
       "price": 8.00,
-      "img": "/images/copo-felicidade.jpg",
+      "img": "/images/Promocao.png",
       "available": false,
       "requires_flavor_selection": true,
       "flavors": [
