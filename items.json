@@ -3,12 +3,12 @@
     "isOpen": true,
     "isDeliveryAvailable": true,
     "closedMessage": "Horário de Funcionamento da Blue Açaí\n\nSegunda-feira: Fechados.\n\nTerça-feira: Fechados.\n\nQuarta-feira: Fechados.\n\nQuinta-feira: Fechados.\n\nSexta-feira:\nTarde: das 15h00 às 17h00.\nNoite: das 17h30 às 22h00.\n\nSábado e Domingo: Fechados.\n\nEstamos localizados na Rua Brasil nº48 Deposito de Bebidas Ribeiro (casa de Tarciso), Centro-Mirinzal, com opções de retirada na loja ou delivery. Esperamos por você!"
-  },
+   },
   "frutas": [
     {
       "id": "morango",
       "name": "Morango",
-      "available": true
+      "available": false
     },
     {
       "id": "banana",
@@ -60,11 +60,16 @@
     {
       "id": "tutti_frutti_creme",
       "name": "Tutti Frutti (Creme)",
-      "available": false
+      "available": true
     },
     {
       "id": "chocolate_avela",
       "name": "Chocolate c/Avelã",
+      "available": true
+      },
+    {
+      "id": "chocolate_branco",
+      "name": "Chocolate Branco",
       "available": true
     }
   ],
@@ -190,6 +195,12 @@
       "name": "Leite em pó (Adicional) - R$ 2.00",
       "originalValue": "Leite em pó - R$ 2.00",
       "available": true
+      },
+    {
+      "id": "leite_condensado",
+      "name": "Leite Condensado (Adicional) - R$ 1.00",
+      "originalValue": "Leite Condensado - R$ 1.00",
+      "available": true
     },
     {
       "id": "confetes_add",
@@ -297,12 +308,18 @@
       "id": "tutti_frutti_creme_add",
       "name": "Tutti Frutti (Creme) - R$ 2.00",
       "originalValue": "Tutti Frutti (Creme) - R$ 2.00",
-      "available": false
+      "available": true
     },
     {
       "id": "chocolate_avela_add",
       "name": "Chocolate c/Avelã (Creme) - R$ 2.00",
       "originalValue": "Chocolate c/Avelã (Creme) - R$ 2.00",
+      "available": true
+      },
+    {
+      "id": "chocolate_branco",
+      "name": "Chocolate Branco (Creme) - R$ 2.00",
+      "originalValue": "Chocolate Branco (Creme) - R$ 2.00",
       "available": true
     }
   ],
@@ -313,7 +330,7 @@
       "description": "COPO DE 300ML, FRUTA= MAÇÃ, CREME= ABACAXI, ACOMPANHAMENTOS= TAPIOCA, PAÇOCA, CONFETES, COBERTURA= KIWI",
       "price": 9.00,
       "img": "/images/Promocao.png",
-      "available": true,
+      "available": false,
       "requires_flavor_selection": true,
       "flavors": [
         {
@@ -367,4 +384,3 @@
     }
   ]
 }
-
