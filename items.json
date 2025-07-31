@@ -71,6 +71,11 @@
       "id": "chocolate_branco",
       "name": "Chocolate Branco",
       "available": true
+      },
+    {
+      "id": "kit kat",
+      "name": "Kit Kat",
+      "available": true
     }
   ],
   "acompanhamentos": [
@@ -320,6 +325,12 @@
       "id": "chocolate_branco",
       "name": "Chocolate Branco (Creme) - R$ 2.00",
       "originalValue": "Chocolate Branco (Creme) - R$ 2.00",
+      "available": true
+      },
+    {
+      "id": "kit_kat",
+      "name": "Kit Kat (Creme) - R$ 2.00",
+      "originalValue": "Kit Kat (Creme) - R$ 2.00",
       "available": true
     }
   ],
