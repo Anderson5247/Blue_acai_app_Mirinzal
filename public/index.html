@@ -348,12 +348,14 @@ label.disabled-item {
                     </div>
                 </fieldset>
 
-                <fieldset id="fsDelivery">
+               <fieldset id="fsDelivery">
                     <legend>9. Entrega ou Retirada <span class="section-status">(Obrigatório)</span></legend>
                     <div class="grid-2">
                         <label><input type="radio" name="delivery" value="Retirada" required />Retirada</label>
-                        <label><input type="radio" name="delivery" value="Mirinzal-Centro - R$ 3.00" />Entrega - Mirinzal-Centro (R$ 3.00)</label>
-                        <label><input type="radio" name="delivery" value="Mirinzal-Bairros - R$ 5.00" />Entrega - Mirinzal-Bairros (R$ 5.00)</label>
+                        {/* ADICIONE ESTA LINHA ABAIXO */}
+                        <label><input type="radio" name="delivery" value="Consumo no local" required />Consumo no local</label>
+                        <label><input type="radio" name="delivery" value="Barreiro - R$ 3.00" />Entrega - Barreiro (R$ 3.00)</label>
+                        <label><input type="radio" name="delivery" value="Centro - R$ 5.00" />Entrega - Centro (R$ 5.00)</label>
                     </div>
                 </fieldset>
                 
@@ -599,39 +601,36 @@ async function fetchAndApplyItemAvailability() {
         enable(fs.clientName);
         enable(fs.payment);
 
-        // --- LÓGICA DE ENTREGA CORRIGIDA ---
-        const deliveryIsAvailable = allItemsData.shopInfo?.isDeliveryAvailable !== false;
+// --- NOVA LÓGICA DE ENTREGA GRANULAR ---
         const deliveryRadios = document.querySelectorAll('input[name="delivery"]');
+        const shopInfo = allItemsData.shopInfo || {};
+        const masterDeliverySwitch = shopInfo.isDeliveryAvailable !== false;
+        const locations = shopInfo.deliveryLocations || { barreiro: false, centro: false };
 
         deliveryRadios.forEach(radio => {
             const label = radio.closest('label');
             if (!label) return;
 
-            // Tratamento para a opção "Retirada"
-            if (radio.value === 'Retirada') {
-                radio.disabled = false;
-                label.classList.remove('disabled-item');
-                label.style.textDecoration = '';
-                label.style.color = '';
-                label.style.cursor = 'pointer';
+            let isEnabled = true; // Assume que a opção está habilitada por padrão
+
+            if (radio.value.includes('Barreiro')) {
+                isEnabled = masterDeliverySwitch && locations.outeiro;
+            } else if (radio.value.includes('Centro')) {
+                isEnabled = masterDeliverySwitch && locations.cedral;
             }
-            // Tratamento para qualquer outra opção (as de entrega)
-            else { // <<< AQUI ESTÁ A CORREÇÃO EFETIVA
-                if (deliveryIsAvailable) {
-                    // Habilita a opção de entrega
-                    radio.disabled = false;
-                    label.classList.remove('disabled-item');
-                    label.style.textDecoration = '';
-                    label.style.color = '';
-                    label.style.cursor = 'pointer';
-                } else {
-                    // Desabilita a opção de entrega e FORÇA o estilo visual
-                    radio.disabled = true;
-                    label.classList.add('disabled-item');
-                    label.style.textDecoration = 'line-through';
-                    label.style.color = '#aaa';
-                    label.style.cursor = 'not-allowed';
-                }
+            // Opções como "Retirada" e "Consumo no local" sempre ficam ativas.
+
+            // Aplica o estilo e o estado (disabled)
+            radio.disabled = !isEnabled;
+            label.classList.toggle('disabled-item', !isEnabled);
+            if (!isEnabled) {
+                 label.style.textDecoration = 'line-through';
+                 label.style.color = '#aaa';
+                 label.style.cursor = 'not-allowed';
+            } else {
+                 label.style.textDecoration = '';
+                 label.style.color = '';
+                 label.style.cursor = 'pointer';
             }
         });
 
