@@ -3,8 +3,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- SELETORES PARA O STATUS DA LOJA ---
     const shopStatusToggle = document.getElementById('shopStatusToggle');
-    // 1. NOVO SELETOR ADICIONADO
     const deliveryStatusToggle = document.getElementById('deliveryStatusToggle');
+    // CORRIGIDO: Seletores corretos para Bairro e Centro
     const deliveryBairroToggle = document.getElementById('deliveryBairroToggle');
     const deliveryCentroToggle = document.getElementById('deliveryCentroToggle');
     const closedMessageText = document.getElementById('closedMessageText');
@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (shopStatusToggle) {
             shopStatusToggle.checked = shopInfo.isOpen;
         }
-        // 2. NOVO BLOCO PARA ATUALIZAR O BOTÃO DE ENTREGA
         if (deliveryStatusToggle) {
             deliveryStatusToggle.checked = shopInfo.isDeliveryAvailable;
         }
- if (shopInfo.deliveryLocations) {
+        // CORRIGIDO: Lógica para popular os checkboxes de Bairro e Centro
+        if (shopInfo.deliveryLocations) {
             if (deliveryBairroToggle) {
                 deliveryBairroToggle.checked = shopInfo.deliveryLocations.bairro;
             }
@@ -41,12 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (saveShopStatusButton) {
-     saveShopStatusButton.addEventListener('click', async () => {
+      saveShopStatusButton.addEventListener('click', async () => {
+            // CORRIGIDO: Verificação usando os seletores corretos
             if (!shopStatusToggle || !closedMessageText || !deliveryStatusToggle || !deliveryBairroToggle || !deliveryCentroToggle) return;
 
             const isOpen = shopStatusToggle.checked;
             const isDeliveryAvailable = deliveryStatusToggle.checked;
-            
+            // CORRIGIDO: Objeto criado com as chaves corretas 'bairro' e 'centro'
             const deliveryLocations = {
                 bairro: deliveryBairroToggle.checked,
                 centro: deliveryCentroToggle.checked
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ isOpen, closedMessage: messageToSave, isDeliveryAvailable, deliveryLocations })
                 });
+
                 if (!response.ok) {
                     throw new Error('Falha ao salvar o status da loja. Status: ' + response.status);
                 }
@@ -77,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     shopStatusMessage.textContent = result.message;
                     shopStatusMessage.style.color = 'green';
                 }
+                // Recarrega os dados para garantir que a interface reflita o que foi salvo
                 await fetchItemsAvailability();
 
             } catch (error) {
@@ -444,5 +447,3 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAndProcessOrders(true);
     updateActiveButton(viewByDayButton);
 });
-
-
