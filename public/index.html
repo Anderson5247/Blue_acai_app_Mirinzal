@@ -354,7 +354,7 @@ label.disabled-item {
                         <label><input type="radio" name="delivery" value="Retirada" required />Retirada</label>
                         {/* ADICIONE ESTA LINHA ABAIXO */}
                         <label><input type="radio" name="delivery" value="Consumo no local" required />Consumo no local</label>
-                        <label><input type="radio" name="delivery" value="Barreiro - R$ 3.00" />Entrega - Barreiro (R$ 3.00)</label>
+                        <label><input type="radio" name="delivery" value="Bairro - R$ 3.00" />Entrega - Barreiro (R$ 3.00)</label>
                         <label><input type="radio" name="delivery" value="Centro - R$ 5.00" />Entrega - Centro (R$ 5.00)</label>
                     </div>
                 </fieldset>
@@ -601,22 +601,25 @@ async function fetchAndApplyItemAvailability() {
         enable(fs.clientName);
         enable(fs.payment);
 
-// --- NOVA LÓGICA DE ENTREGA GRANULAR ---
+// --- NOVA LÓGICA DE ENTREGA GRANULAR (CORRIGIDA) ---
         const deliveryRadios = document.querySelectorAll('input[name="delivery"]');
         const shopInfo = allItemsData.shopInfo || {};
         const masterDeliverySwitch = shopInfo.isDeliveryAvailable !== false;
-        const locations = shopInfo.deliveryLocations || { barreiro: false, centro: false };
+        const locations = shopInfo.deliveryLocations || { bairro: false, centro: false };
 
         deliveryRadios.forEach(radio => {
             const label = radio.closest('label');
             if (!label) return;
 
-            let isEnabled = true; // Assume que a opção está habilitada por padrão
+            let isEnabled = true; // Habilitado por padrão para "Retirada" e "Consumo no Local"
 
-            if (radio.value.includes('Barreiro')) {
-                isEnabled = masterDeliverySwitch && locations.outeiro;
-            } else if (radio.value.includes('Centro')) {
-                isEnabled = masterDeliverySwitch && locations.cedral;
+            // Verifica "Bairro" e usa a chave "bairro" do 'locations'
+            if (radio.value.includes('Bairro')) {
+                isEnabled = masterDeliverySwitch && locations.bairro;
+            } 
+            // Verifica "Centro" e usa a chave "centro" do 'locations'
+            else if (radio.value.includes('Centro')) {
+                isEnabled = masterDeliverySwitch && locations.centro;
             }
             // Opções como "Retirada" e "Consumo no local" sempre ficam ativas.
 
