@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const shopStatusToggle = document.getElementById('shopStatusToggle');
     // 1. NOVO SELETOR ADICIONADO
     const deliveryStatusToggle = document.getElementById('deliveryStatusToggle');
+    const deliveryBairroToggle = document.getElementById('deliveryOuteiroToggle');
+    const deliveryCentroToggle = document.getElementById('deliveryCedralToggle');
     const closedMessageText = document.getElementById('closedMessageText');
     const saveShopStatusButton = document.getElementById('saveShopStatusButton');
     const shopStatusMessage = document.getElementById('shopStatusMessage');
@@ -25,18 +27,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (deliveryStatusToggle) {
             deliveryStatusToggle.checked = shopInfo.isDeliveryAvailable;
         }
+        if (shopInfo.deliveryLocations) {
+            if (deliveryOuteiroToggle) {
+                deliveryOuteiroToggle.checked = shopInfo.deliveryLocations.outeiro;
+            }
+            if (deliveryCedralToggle) {
+                deliveryCedralToggle.checked = shopInfo.deliveryLocations.cedral;
+            }
         if (closedMessageText) {
             closedMessageText.value = shopInfo.closedMessage;
         }
     }
 
     if (saveShopStatusButton) {
-        saveShopStatusButton.addEventListener('click', async () => {
-            if (!shopStatusToggle || !closedMessageText || !deliveryStatusToggle) return;
+      saveShopStatusButton.addEventListener('click', async () => {
+            // Adicione os novos toggles à verificação
+            if (!shopStatusToggle || !closedMessageText || !deliveryStatusToggle || !deliveryOuteiroToggle || !deliveryCedralToggle) return;
 
             const isOpen = shopStatusToggle.checked;
-            // 3. ADICIONADA A LEITURA DO NOVO BOTÃO E ENVIO PARA O SERVIDOR
             const isDeliveryAvailable = deliveryStatusToggle.checked;
+            // Leia o status dos novos checkboxes
+            const deliveryLocations = {
+                outeiro: deliveryOuteiroToggle.checked,
+                cedral: deliveryCedralToggle.checked
+            };
             let messageToSave = closedMessageText.value.trim();
 
             if (messageToSave === '' && currentItemsData.shopInfo && currentItemsData.shopInfo.closedMessage) {
@@ -53,8 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     // O novo status da entrega é incluído aqui
-                    body: JSON.stringify({ isOpen, closedMessage: messageToSave, isDeliveryAvailable })
-                });
+                 body: JSON.stringify({ isOpen, closedMessage: messageToSave, isDeliveryAvailable, deliveryLocations })
 
                 if (!response.ok) {
                     throw new Error('Falha ao salvar o status da loja. Status: ' + response.status);
@@ -432,3 +445,4 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAndProcessOrders(true);
     updateActiveButton(viewByDayButton);
 });
+
