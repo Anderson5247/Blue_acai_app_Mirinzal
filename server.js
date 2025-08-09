@@ -55,10 +55,10 @@ app.post('/api/items', (req, res) => {
     });
 });
 
-// NOVA ROTA: Atualizar o status da loja (aberto/fechado) e a mensagem
+// ROTA ATUALIZADA para salvar o status da loja e dos locais de entrega
 app.post('/api/shop-info', (req, res) => {
-    // LINHA MODIFICADA
-    const { isOpen, closedMessage, isDeliveryAvailable } = req.body;
+    // 1. AGORA TAMBÉM RECEBE 'deliveryLocations'
+    const { isOpen, closedMessage, isDeliveryAvailable, deliveryLocations } = req.body;
 
     fs.readFile(itemsFilePath, 'utf8', (err, data) => {
         if (err) {
@@ -68,21 +68,26 @@ app.post('/api/shop-info', (req, res) => {
         try {
             const itemsData = JSON.parse(data);
             
-            // Inicializa shopInfo se não existir
             if (!itemsData.shopInfo) {
                 itemsData.shopInfo = {};
             }
 
+            // Atualiza as informações antigas
             itemsData.shopInfo.isOpen = isOpen;
             itemsData.shopInfo.closedMessage = closedMessage;
-            // NOVA LINHA
             itemsData.shopInfo.isDeliveryAvailable = isDeliveryAvailable;
+            
+            // 2. ADICIONA A NOVA INFORMAÇÃO DOS LOCAIS DE ENTREGA ANTES DE SALVAR
+            if (deliveryLocations) {
+                itemsData.shopInfo.deliveryLocations = deliveryLocations;
+            }
 
             fs.writeFile(itemsFilePath, JSON.stringify(itemsData, null, 2), 'utf8', (writeErr) => {
                 if (writeErr) {
                     console.error("Erro ao salvar status da loja em items.json:", writeErr);
                     return res.status(500).send('Erro ao salvar o status da loja.');
                 }
+                // A mensagem de sucesso permanece a mesma
                 res.json({ message: 'Status da loja atualizado com sucesso!' });
             });
         } catch (parseError) {
@@ -91,7 +96,6 @@ app.post('/api/shop-info', (req, res) => {
         }
     });
 });
-
 // --- ROTAS PARA PEDIDOS ---
 
 // API: Registrar um novo pedido
@@ -160,3 +164,4 @@ app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
     console.log(`Acesse o cardápio e o admin pela URL principal fornecida pela plataforma.`);
 });
+
