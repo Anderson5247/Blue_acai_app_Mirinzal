@@ -30,6 +30,17 @@
                 </label>
                 <label class="status-label">Entrega Disponível</label>
             </div>
+            <div id="deliveryLocationsControl" style="margin-top: 1rem; padding-left: 20px;">
+                <strong>Locais de Entrega Ativos:</strong>
+                <div class="item-control-admin">
+                    <input type="checkbox" id="deliveryOuteiroToggle">
+                    <label for="deliveryOuteiroToggle">Outeiro</label>
+                </div>
+                <div class="item-control-admin">
+                    <input type="checkbox" id="deliveryCedralToggle">
+                    <label for="deliveryCedralToggle">Cedral</label>
+                </div>
+            </div>
             <div class="message-control">
                 <label for="closedMessageText">Mensagem para exibir quando a loja estiver fechada:</label>
                 <textarea id="closedMessageText" rows="5" placeholder="Digite aqui a mensagem com os horários de funcionamento..."></textarea>
@@ -69,3 +80,4 @@
     <script src="/js/admin_script.js"></script>
 </body>
 </html>
+
