@@ -357,6 +357,13 @@ label.disabled-item {
                         <label><input type="radio" name="delivery" value="Centro - R$ 5.00" />Entrega - Centro (R$ 5.00)</label>
                     </div>
                 </fieldset>
+            <div id="storeAddressInfo" style="display: none; text-align: center; background-color: #f3e5ff; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                    <h3 style="color: var(--purple); margin-bottom: 0.5rem;">Nosso Endereço:</h3>
+                    <p>
+                        Rua Brasil, nº 48, Centro - Mirinzal<br>
+                        <strong>Ponto de Referência:</strong> Depósito de Bebidas Ribeiro
+                    </p>
+                </div>
                 
                 <fieldset id="fsAddress" style="display: none;">
                     <legend>10. Endereço para Entrega <span class="section-status">(Obrigatório)</span></legend>
@@ -775,7 +782,11 @@ async function fetchAndApplyItemAvailability() {
 
    // Substitua esta função inteira no seu index.html
 
+// Substitua esta função inteira no seu index.html
 function setupRadioListener(name, stageToAdvanceOnClick) {
+    // Pega o novo div do endereço da loja que você acabou de criar
+    const storeAddressInfo = document.getElementById('storeAddressInfo');
+
     document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
         if (r.disabled) return;
         if (r._currentListener) r.removeEventListener('change', r._currentListener);
@@ -788,23 +799,21 @@ function setupRadioListener(name, stageToAdvanceOnClick) {
             document.querySelectorAll(`input[name="${name}"]`).forEach(radioEl => radioEl.closest('label')?.classList.remove('selected-radio'));
             ev.target.closest('label:not(.disabled-item)')?.classList.add('selected-radio');
 
-            // ===== INÍCIO DA LÓGICA CORRIGIDA =====
+            // ===== INÍCIO DA LÓGICA ATUALIZADA =====
             if (name === 'delivery') {
-                // Verifica se a opção é de entrega E se a entrega está disponível no sistema
-                const isDeliveryOption = value !== 'Retirada';
-                const isDeliveryGloballyAvailable = allItemsData.shopInfo?.isDeliveryAvailable !== false;
-
-                if (isDeliveryOption && isDeliveryGloballyAvailable) {
-                    // Só mostra o campo de endereço se as duas condições forem verdadeiras
-                    fs.address.style.display = 'block';
-                    enable(fs.address);
-                } else {
-                    // Esconde o campo em todos os outros casos (Retirada ou Entrega Indisponível)
-                    fs.address.style.display = 'none';
-                    addressInput.value = '';
+                // Se for Retirada OU Consumo no local
+                if (value === 'Retirada' || value === 'Consumo no local') {
+                    fs.address.style.display = 'none'; // Esconde o campo de digitar endereço
+                    addressInput.value = ''; // Limpa o campo para não ser salvo por engano
+                    if(storeAddressInfo) storeAddressInfo.style.display = 'block'; // Mostra o endereço da loja
+                } 
+                // Se for qualquer outra opção (entrega)
+                else {
+                    fs.address.style.display = 'block'; // Mostra o campo de digitar endereço
+                    if(storeAddressInfo) storeAddressInfo.style.display = 'none'; // Esconde o endereço da loja
                 }
             }
-            // ===== FIM DA LÓGICA CORRIGIDA =====
+            // ===== FIM DA LÓGICA ATUALIZADA =====
 
             if (name === 'wantAdd' && stageToAdvanceOnClick) advanceStage(stageToAdvanceOnClick);
             if (name === 'payment' && pixInfoDiv) pixInfoDiv.classList.toggle('hidden', value !== 'Pix');
@@ -919,25 +928,26 @@ if (key !== 'add' && max !== undefined && actualSelectedCount > max) {          
     }
 
 // Substitua esta função para o ajuste final de consistência
+// Substitua esta função para a validação final
 function checkIfCanFinish() {
     const itemValid = validateCurrentOrderItem();
     const clientNameFilled = clientNameInput.value.trim() !== '';
     const paymentSelected = !!state.payment;
     const deliverySelected = !!state.delivery;
 
-    // --- INÍCIO DA LÓGICA DE VALIDAÇÃO 100% CORRIGIDA ---
+    // --- LÓGICA DE VALIDAÇÃO DE ENDEREÇO ATUALIZADA ---
     let addressOk = false;
     if (deliverySelected) {
-        // Se a opção for Retirada, o endereço está sempre OK.
-        if (state.delivery === 'Retirada') {
+        // Se a opção for Retirada ou Consumo no local, o endereço não é necessário
+        if (state.delivery === 'Retirada' || state.delivery === 'Consumo no local') {
             addressOk = true;
         } 
-        // Se for qualquer outra opção (de entrega), só está OK se o endereço estiver preenchido.
+        // Para qualquer outra opção (entrega), o endereço deve ser preenchido
         else {
             addressOk = addressInput.value.trim() !== '';
         }
     }
-    // --- FIM DA CORREÇÃO ---
+    // --- FIM DA ATUALIZAÇÃO ---
 
     const canProceed = itemValid && clientNameFilled && paymentSelected && deliverySelected && addressOk;
     btnAdd.disabled = !canProceed;
