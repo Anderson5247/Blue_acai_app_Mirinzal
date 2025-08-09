@@ -62,13 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 shopStatusMessage.textContent = 'Salvando status...';
                 shopStatusMessage.style.color = 'orange';
             }
-
-            try {
+try {
                 const response = await fetch('/api/shop-info', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ isOpen, closedMessage: messageToSave, isDeliveryAvailable, deliveryLocations })
-                });
+                }); // <-- O parêntese ')' do fetch fecha aqui!
 
                 if (!response.ok) {
                     throw new Error('Falha ao salvar o status da loja. Status: ' + response.status);
@@ -79,8 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     shopStatusMessage.textContent = result.message;
                     shopStatusMessage.style.color = 'green';
                 }
-                // Recarrega os dados para garantir que a interface reflita o que foi salvo
-                await fetchItemsAvailability();
+                
+                // Esta linha atualiza a página com os novos dados salvos.
+                await fetchItemsAvailability(); 
 
             } catch (error) {
                 console.error("Erro ao salvar status da loja:", error);
@@ -447,3 +447,4 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAndProcessOrders(true);
     updateActiveButton(viewByDayButton);
 });
+
