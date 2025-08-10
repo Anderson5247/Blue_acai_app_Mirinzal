@@ -784,37 +784,30 @@ async function fetchAndApplyItemAvailability() {
 
 // Substitua esta função inteira no seu index.html
 function setupRadioListener(name, stageToAdvanceOnClick) {
-    // Pega o novo div do endereço da loja que você acabou de criar
     const storeAddressInfo = document.getElementById('storeAddressInfo');
-
     document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
         if (r.disabled) return;
         if (r._currentListener) r.removeEventListener('change', r._currentListener);
-        
         const new_listener = ev => {
             const value = ev.target.value;
             if (name === 'specialFlavor') state.selectedSpecialFlavor = value;
             else state[name] = value;
-            
             document.querySelectorAll(`input[name="${name}"]`).forEach(radioEl => radioEl.closest('label')?.classList.remove('selected-radio'));
             ev.target.closest('label:not(.disabled-item)')?.classList.add('selected-radio');
-
-            // ===== INÍCIO DA LÓGICA ATUALIZADA =====
+            
             if (name === 'delivery') {
-                // Se for Retirada OU Consumo no local
                 if (value === 'Retirada' || value === 'Consumo no local') {
-                    fs.address.style.display = 'none'; // Esconde o campo de digitar endereço
-                    addressInput.value = ''; // Limpa o campo para não ser salvo por engano
-                    if(storeAddressInfo) storeAddressInfo.style.display = 'block'; // Mostra o endereço da loja
-                } 
-                // Se for qualquer outra opção (entrega)
-                else {
-                    fs.address.style.display = 'block'; // Mostra o campo de digitar endereço
-                    if(storeAddressInfo) storeAddressInfo.style.display = 'none'; // Esconde o endereço da loja
+                    fs.address.style.display = 'none';
+                    disable(fs.address); // Desabilita para garantir
+                    addressInput.value = '';
+                    if (storeAddressInfo) storeAddressInfo.style.display = 'block';
+                } else { // Para qualquer opção de entrega
+                    fs.address.style.display = 'block';
+                    enable(fs.address); // <<< ESSA É A LINHA QUE FALTAVA
+                    if (storeAddressInfo) storeAddressInfo.style.display = 'none';
                 }
             }
-            // ===== FIM DA LÓGICA ATUALIZADA =====
-
+            
             if (name === 'wantAdd' && stageToAdvanceOnClick) advanceStage(stageToAdvanceOnClick);
             if (name === 'payment' && pixInfoDiv) pixInfoDiv.classList.toggle('hidden', value !== 'Pix');
             
@@ -824,7 +817,6 @@ function setupRadioListener(name, stageToAdvanceOnClick) {
         r._currentListener = new_listener;
     });
 }
-
     function setupChecks(fieldsetElement, max, key) { 
         const box = fieldsetElement.querySelector('.grid-2'); 
         if (!box) return;
