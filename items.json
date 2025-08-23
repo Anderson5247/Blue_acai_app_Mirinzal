@@ -252,7 +252,7 @@
      "id": "morango_add",
       "name": "Morango - R$ 1.00",
       "originalValue": "Morango - R$ 1.00",
-      "available": true
+      "available": false
     },
     {
       "id": "banana_add",
