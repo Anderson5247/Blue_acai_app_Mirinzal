@@ -1,7 +1,7 @@
 {
   "shopInfo": {
     "isOpen": true,
-    "isDeliveryAvailable": true,
+    "isDeliveryAvailable": false,
     "deliveryLocations": {
       "bairro": true,
       "centro": true
@@ -69,12 +69,12 @@
     {
       "id": "chocolate_avela",
       "name": "Chocolate c/Avelã",
-      "available": true
+      "available": false
       },
     {
       "id": "chocolate_branco",
       "name": "Chocolate Branco",
-      "available": true
+      "available": false
     }
   ],
   "acompanhamentos": [
@@ -288,7 +288,7 @@
       "id": "ninho_creme_zero_lactose_add",
       "name": "Ninho Zero Lactose (Creme) - R$ 2.00",
       "originalValue": "Ninho - R$ 2.00",
-      "available": true
+      "available": false
     },
     {
       "id": "maracuja_creme_add",
