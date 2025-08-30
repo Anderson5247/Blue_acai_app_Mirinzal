@@ -286,7 +286,21 @@ label.disabled-item {
         #fsSpecialProductFlavors .grid-2 label span {
             display: inline; font-weight: bold;
         }
-
+/* CSS PARA O BANNER - PODE COLAR NO FINAL DA TAG <STYLE> */
+.produto-card .banner-mais-vendido {
+    position: absolute;
+    top: 10px;
+    left: -8px;
+    background-color: #dc3545; /* Vermelho para destaque */
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform: rotate(-5deg); /* Leve inclinação para estilo */
+    z-index: 3; /* Garante que fique por cima de outros elementos */
+}
     </style>
 </head>
 <body>
@@ -659,7 +673,7 @@ async function fetchAndApplyItemAvailability() {
 
         const acaiProducts = [
             { id: 'size-300', name: 'Copo Pequeno (300ml)', price: 10.00, img: '/images/copo-pequeno.jpg', desc: 'Até 1 fruta, até 1 creme,<br>até 3 acompanhamentos,<br>até 1 cobertura', available: true },
-            { id: 'size-500', name: 'Copo Grande (500ml)', price: 15.00, img: '/images/copo-grande.jpg', desc: 'Até 2 frutas, até 2 cremes,<br>até 3 acompanhamentos,<br>até 1 cobertura', available: true },
+            { id: 'size-500', name: 'Copo Grande (500ml)', price: 15.00, img: '/images/copo-grande.jpg', desc: 'Até 2 frutas, até 2 cremes,<br>até 3 acompanhamentos,<br>até 1 cobertura', available: true, isBestseller: true, },
             { id: 'size-1L', name: 'Pote da Felicidade (1 litro)', price: 40.00, img: '/images/pote-felicidade.jpg', desc: 'Até 3 frutas, até 3 cremes,<br>até 4 acompanhamentos,<br>até 2 coberturas', available: true }
         ];
 
@@ -672,6 +686,9 @@ async function fetchAndApplyItemAvailability() {
         const inputDisabled = !prod.available ? 'disabled' : '';
         const title = !prod.available ? 'Produto indisponível' : '';
         const inputId = `prod-${prod.id}`; 
+        const bestsellerBanner = prod.isBestseller 
+        ? '<div class="banner-mais-vendido">O MAIS VENDIDO</div>' 
+        : '';
         
         return `
             <label class="produto-card ${disabledClass}" for="${inputId}" data-product-type="${type}" data-product-id="${prod.id}" data-price="${prod.price}" title="${title}">
