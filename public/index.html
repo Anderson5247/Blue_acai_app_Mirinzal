@@ -681,19 +681,22 @@ async function fetchAndApplyItemAvailability() {
         (allItemsData.produtos_especiais || []).forEach(prod => { boxProdutosPrincipais.innerHTML += createProductCardHTML(prod, 'produto_especial'); });
     }
 
-    // Substitua sua função por esta:
+   // Localize a função createProductCardHTML e substitua-a inteiramente por esta versão:
 function createProductCardHTML(prod, type) {
     const disabledClass = !prod.available ? 'disabled-item' : '';
     const inputDisabled = !prod.available ? 'disabled' : '';
     const title = !prod.available ? 'Produto indisponível' : '';
     const inputId = `prod-${prod.id}`; 
+    
     const bestsellerBanner = prod.isBestseller 
-    ? '<div class="banner-mais-vendido">O MAIS VENDIDO</div>' 
-    : '';
+        ? '<div class="banner-mais-vendido">O MAIS VENDIDO</div>' 
+        : '';
     
     return `
         <label class="produto-card ${disabledClass}" for="${inputId}" data-product-type="${type}" data-product-id="${prod.id}" data-price="${prod.price}" title="${title}">
-            ${bestsellerBanner}  <img src="${prod.img || '/images/default-product.png'}" alt="${prod.name}" />
+            ${bestsellerBanner}
+            
+            <img src="${prod.img || '/images/default-product.png'}" alt="${prod.name}" />
             <input type="radio" name="produtoPrincipal" value="${prod.name}" id="${inputId}" required ${inputDisabled}/>
             <div>
                 <strong>${prod.name}</strong> - R$ ${prod.price.toFixed(2).replace('.', ',')}
@@ -702,7 +705,6 @@ function createProductCardHTML(prod, type) {
         </label>
     `;
 }
-
     function updateAndRenderFlavors(product) {
         if (!fs.specialProductFlavors || !product || !product.flavors) {
             disable(fs.specialProductFlavors);
