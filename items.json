@@ -65,11 +65,6 @@
       "id": "tutti_frutti_creme",
       "name": "Tutti Frutti (Creme)",
       "available": true
-    },
-    {
-      "id": "chocolate_avela",
-      "name": "Chocolate c/Avelã",
-      "available": false
       },
     {
       "id": "chocolate_branco",
@@ -288,7 +283,7 @@
       "id": "ninho_creme_zero_lactose_add",
       "name": "Ninho Zero Lactose (Creme) - R$ 2.00",
       "originalValue": "Ninho - R$ 2.00",
-      "available": false
+      "available": true
     },
     {
       "id": "maracuja_creme_add",
