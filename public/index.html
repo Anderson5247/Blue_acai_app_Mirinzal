@@ -681,26 +681,27 @@ async function fetchAndApplyItemAvailability() {
         (allItemsData.produtos_especiais || []).forEach(prod => { boxProdutosPrincipais.innerHTML += createProductCardHTML(prod, 'produto_especial'); });
     }
 
-    function createProductCardHTML(prod, type) {
-        const disabledClass = !prod.available ? 'disabled-item' : '';
-        const inputDisabled = !prod.available ? 'disabled' : '';
-        const title = !prod.available ? 'Produto indisponível' : '';
-        const inputId = `prod-${prod.id}`; 
-        const bestsellerBanner = prod.isBestseller 
-        ? '<div class="banner-mais-vendido">O MAIS VENDIDO</div>' 
-        : '';
-        
-        return `
-            <label class="produto-card ${disabledClass}" for="${inputId}" data-product-type="${type}" data-product-id="${prod.id}" data-price="${prod.price}" title="${title}">
-                <img src="${prod.img || '/images/default-product.png'}" alt="${prod.name}" />
-                <input type="radio" name="produtoPrincipal" value="${prod.name}" id="${inputId}" required ${inputDisabled}/>
-                <div>
-                    <strong>${prod.name}</strong> - R$ ${prod.price.toFixed(2).replace('.', ',')}
-                    <span>${prod.desc || prod.description || ''}</span>
-                </div>
-            </label>
-        `;
-    }
+    // Substitua sua função por esta:
+function createProductCardHTML(prod, type) {
+    const disabledClass = !prod.available ? 'disabled-item' : '';
+    const inputDisabled = !prod.available ? 'disabled' : '';
+    const title = !prod.available ? 'Produto indisponível' : '';
+    const inputId = `prod-${prod.id}`; 
+    const bestsellerBanner = prod.isBestseller 
+    ? '<div class="banner-mais-vendido">O MAIS VENDIDO</div>' 
+    : '';
+    
+    return `
+        <label class="produto-card ${disabledClass}" for="${inputId}" data-product-type="${type}" data-product-id="${prod.id}" data-price="${prod.price}" title="${title}">
+            ${bestsellerBanner}  <img src="${prod.img || '/images/default-product.png'}" alt="${prod.name}" />
+            <input type="radio" name="produtoPrincipal" value="${prod.name}" id="${inputId}" required ${inputDisabled}/>
+            <div>
+                <strong>${prod.name}</strong> - R$ ${prod.price.toFixed(2).replace('.', ',')}
+                <span>${prod.desc || prod.description || ''}</span>
+            </div>
+        </label>
+    `;
+}
 
     function updateAndRenderFlavors(product) {
         if (!fs.specialProductFlavors || !product || !product.flavors) {
