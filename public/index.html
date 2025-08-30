@@ -681,7 +681,7 @@ async function fetchAndApplyItemAvailability() {
         (allItemsData.produtos_especiais || []).forEach(prod => { boxProdutosPrincipais.innerHTML += createProductCardHTML(prod, 'produto_especial'); });
     }
 
-   // Localize a função createProductCardHTML e substitua-a inteiramente por esta versão:
+  // Localize esta função no seu public/index.html e substitua-a completamente por este bloco:
 function createProductCardHTML(prod, type) {
     const disabledClass = !prod.available ? 'disabled-item' : '';
     const inputDisabled = !prod.available ? 'disabled' : '';
