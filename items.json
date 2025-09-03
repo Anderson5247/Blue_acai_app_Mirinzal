@@ -12,7 +12,7 @@
     {
       "id": "morango",
       "name": "Morango",
-      "available": false
+      "available": true
     },
     {
       "id": "banana",
@@ -61,11 +61,6 @@
       "name": "Abacaxi",
       "available": true
     },
-    {
-      "id": "tutti_frutti_creme",
-      "name": "Tutti Frutti (Creme)",
-      "available": true
-      },
     {
       "id": "chocolate_branco",
       "name": "Chocolate Branco",
@@ -323,61 +318,7 @@
     }
   ],
   "produtos_especiais": [
-    {
-      "id": "barato do dia",
-      "name": "BARATO DO DIA",
-      "description": "COPO DE 300ML, FRUTA= MAÇÃ, CREME= ABACAXI, ACOMPANHAMENTOS= TAPIOCA, PAÇOCA, CONFETES, COBERTURA= KIWI",
-      "price": 9.00,
-      "img": "/images/Promocao.png",
-      "available": false,
-      "requires_flavor_selection": true,
-      "flavors": [
-        {
-          "id": "copo de 300ml",
-          "name": "Copo de 300ml",
-          "internal_description": "COPO DE 300ML, FRUTA= MAÇÃ, CREME= ABACAXI, ACOMPANHAMENTOS= TAPIOCA, PAÇOCA, CONFETES, COBERTURA= KIWI",
-          "available": true
-        },
-        {
-          "id": "floresta_negra",
-          "name": "Floresta Negra",
-          "internal_description": "creme especial + floresta negra",
-          "available": false
-        },
-        {
-          "id": "flocos",
-          "name": "Flocos Delícia",
-          "internal_description": "creme especial + flocos",
-          "available": false
-        }
-      ]
-    },
-    {
-      "id": "fatia_bolo_doce_amor",
-      "name": "Fatia de Bolo 'Doce Amor'",
-      "description": "Deliciosas fatias de bolo para adoçar o seu dia.",
-      "price": 7.00,
-      "img": "/images/fatia-bolo-doce-amor.jpg",
-      "available": false,
-      "requires_flavor_selection": true,
-      "flavors": [
-        {
-          "id": "Fatia",
-          "name": "Fatia recheada",
-          "internal_description": "Massa branca com recheio de doce de leite e ganache e cobertura de creme de bobom garoto.",
-          "available": true
-        },
-        {
-          "id": "prestigio",
-          "name": "Prestígio",
-          "internal_description": "Massa de chocolate com recheio cremoso de coco.",
-          "available": false
-        },
-        {
-          "id": "ninho_nutella",
-          "name": "Ninho com Nutella",
-          "internal_description": "Massa branca com recheio de Ninho e Nutella.",
-          "available": false
+  
         }
       ]
     }
