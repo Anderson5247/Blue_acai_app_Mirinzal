@@ -10,8 +10,8 @@
    },
   "frutas": [
     {
-      "id": "GELEIA Morango",
-      "name": "GELEIA Morango",
+      "id": "GELEIA de Morango",
+      "name": "GELEIA de Morango",
       "available": true
     },
     {
@@ -233,10 +233,10 @@
       "available": true
     },
     {
-     "id": "GELEIA morango_add",
-      "name": "GELEIA Morango - R$ 1.00",
-      "originalValue": "Morango - R$ 1.00",
-      "available": false
+     "id": "GELEIA de morango_add",
+      "name": "GELEIA de Morango - R$ 1.00",
+      "originalValue": "GELEIA de Morango - R$ 1.00",
+      "available": true
     },
     {
       "id": "banana_add",
