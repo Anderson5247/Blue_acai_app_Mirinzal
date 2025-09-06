@@ -1,6 +1,6 @@
 {
   "shopInfo": {
-    "isOpen": true,
+    "isOpen": false,
     "isDeliveryAvailable": false,
     "deliveryLocations": {
       "bairro": true,
