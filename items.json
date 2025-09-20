@@ -6,12 +6,12 @@
       "bairro": true,
       "centro": true
     },
-    "closedMessage": "Horário de Funcionamento da Blue Açaí\n\nSegunda-feira: Fechados.\n\nTerça-feira: Fechados.\n\nQuarta-feira: Fechados.\n\nQuinta-feira: Fechados.\n\nSexta-feira:\nNoite: das 17h30 às 22h00.\n\nSábado e Domingo: Fechados.\n\nEstamos localizados na Rua Brasil nº48 Deposito de Bebidas Ribeiro (casa de Tarciso), Centro-Mirinzal, com opções de retirada na loja ou delivery. Esperamos por você!"
+  "closedMessage": "Horário de Funcionamento da Blue Açaí\n\nSegunda-feira: Fechados.\n\nTerça-feira: Fechados.\n\nQuarta-feira: Fechados.\n\nQuinta-feira: Fechados.\n\nSexta-feira:\nNoite: das 17h30 às 22h00.\n\nSábado e Domingo: Fechados.\n\nEstamos localizados na Rua Brasil nº48 Deposito de Bebidas Ribeiro (casa de Tarciso), Centro-Mirinzal, com opções de retirada na loja ou delivery. Esperamos por você!"
    },
   "frutas": [
     {
-      "id": "GELEIA de Morango",
-      "name": "GELEIA de Morango",
+      "id": "geleia_de_morango",
+      "name": "Geleia de Morango",
       "available": true
     },
     {
@@ -183,9 +183,9 @@
       "name": "Leite em pó (Adicional) - R$ 2.00",
       "originalValue": "Leite em pó - R$ 2.00",
       "available": true
-      },
+    },
     {
-      "id": "leite_condensado",
+      "id": "leite_condensado_add",
       "name": "Leite Condensado (Adicional) - R$ 1.00",
       "originalValue": "Leite Condensado - R$ 1.00",
       "available": true
@@ -233,9 +233,9 @@
       "available": true
     },
     {
-     "id": "GELEIA de morango_add",
-      "name": "GELEIA de Morango - R$ 1.00",
-      "originalValue": "GELEIA de Morango - R$ 1.00",
+      "id": "geleia_de_morango_add",
+      "name": "Geleia de Morango - R$ 1.00",
+      "originalValue": "Geleia de Morango - R$ 1.00",
       "available": true
     },
     {
@@ -245,33 +245,33 @@
       "available": true
     },
     {
-       "id": "kiwi_add",
+      "id": "kiwi_add",
       "name": "Kiwi - R$ 1.00",
       "originalValue": "Kiwi - R$ 1.00",
       "available": true
     },
     {
-       "id": "maçã_add",
+      "id": "maca_add",
       "name": "Maçã - R$ 1.00",
       "originalValue": "Maçã - R$ 1.00",
       "available": true
     },
     {
-       "id": "uva_add",
+      "id": "uva_add",
       "name": "Uva - R$ 1.00",
-      "originalValue": "Uva- R$ 1.00",
+      "originalValue": "Uva - R$ 1.00",
       "available": true
     },
     {
       "id": "ninho_creme_add",
       "name": "Ninho (Creme) - R$ 2.00",
-      "originalValue": "Ninho - R$ 2.00",
+      "originalValue": "Ninho (Creme) - R$ 2.00",
       "available": true
     },
     {
       "id": "ninho_creme_zero_lactose_add",
       "name": "Ninho Zero Lactose (Creme) - R$ 2.00",
-      "originalValue": "Ninho - R$ 2.00",
+      "originalValue": "Ninho Zero Lactose (Creme) - R$ 2.00",
       "available": true
     },
     {
@@ -287,9 +287,9 @@
       "available": true
     },
     {
-      "id": "Abacaxi_creme_add",
+      "id": "abacaxi_creme_add",
       "name": "Abacaxi (Creme) - R$ 2.00",
-      "originalValue": "Tutti Frutti (Creme) - R$ 2.00",
+      "originalValue": "Abacaxi (Creme) - R$ 2.00",
       "available": true
     },
     {
@@ -297,20 +297,139 @@
       "name": "Chocolate c/Avelã (Creme) - R$ 2.00",
       "originalValue": "Chocolate c/Avelã (Creme) - R$ 2.00",
       "available": true
-      },
+    },
     {
-      "id": "chocolate_branco",
+      "id": "chocolate_branco_add",
       "name": "Chocolate Branco (Creme) - R$ 2.00",
       "originalValue": "Chocolate Branco (Creme) - R$ 2.00",
       "available": true
-      },
+    },
     {
-      "id": "kit_kat",
+      "id": "kit_kat_add",
       "name": "Kit Kat (Creme) - R$ 2.00",
       "originalValue": "Kit Kat (Creme) - R$ 2.00",
+      "available": true
+    },
+    {
+      "id": "bola-de-sorvete-tapioca",
+      "name": "Bola de Sorvete Tapioca - R$ 1.50",
+      "originalValue": "Bola de Sorvete Tapioca - R$ 1.50",
+      "available": true
+    },
+    {
+      "id": "bola-de-sorvete-creme-com-passas",
+      "name": "Bola de Sorvete Creme com passas - R$ 1.50",
+      "originalValue": "Bola de Sorvete Creme com passas - R$ 1.50",
+      "available": true
+    },
+    {
+      "id": "bola-de-sorvete-ninho",
+      "name": "Bola de Sorvete Ninho - R$ 1.50",
+      "originalValue": "Bola de Sorvete Ninho - R$ 1.50",
+      "available": true
+    },
+    {
+      "id": "bola-de-sorvete-choconinho",
+      "name": "Bola de Sorvete Choconinho - R$ 1.50",
+      "originalValue": "Bola de Sorvete Choconinho - R$ 1.50",
+      "available": true
+    },
+    {
+      "id": "bola-de-sorvete-napolitano",
+      "name": "Bola de Sorvete Napolitano - R$ 1.50",
+      "originalValue": "Bola de Sorvete Napolitano - R$ 1.50",
+      "available": true
+    },
+    {
+      "id": "bola-de-sorvete-ferrero-rocher",
+      "name": "Bola de Sorvete Ferrero Rocher - R$ 1.50",
+      "originalValue": "Bola de Sorvete Ferrero Rocher - R$ 1.50",
       "available": true
     }
   ],
   "produtos_especiais": [
-      ]
+    {
+      "id": "sorvete-casquinha",
+      "name": "Sorvete de Casquinha",
+      "description": "1 sabor e 1 calda",
+      "price": 4.00,
+      "img": "/images/casquinha.jpg",
+      "available": true,
+      "type": "sorvete"
+    },
+    {
+      "id": "sorvete-pote",
+      "name": "Sorvete no Pote",
+      "description": "180g de puro sabor, 1 calda e adicionais sem limites",
+      "price": 7.00,
+      "img": "/images/copo.jpeg",
+      "available": true,
+      "type": "sorvete"
+    },
+    {
+      "id": "milk-shake",
+      "name": "Milk Shake 300ml",
+      "description": "1 sabor, 1 calda e adicionais sem limites",
+      "price": 6.00,
+      "img": "/images/copodemilk.jpeg",
+      "available": true,
+      "type": "sorvete"
+    },
+    {
+      "id": "guarana-300",
+      "name": "Guaraná da Amazônia 300ml",
+      "description": "EM BREVE Turbine com caldas e adicionais!",
+      "price": 10.00,
+      "img": "/images/copode300ml.png",
+      "available": false,
+      "type": "bebida"
+    },
+    {
+      "id": "guarana-500",
+      "name": "Guaraná da Amazônia 500ml",
+      "description": "EM BREVE Turbine com caldas e adicionais!",
+      "price": 15.00,
+      "img": "/images/copode500ml.png",
+      "available": false,
+      "type": "bebida"
     }
+  ],
+  "sorvete_sabores": [
+    {
+      "id": "sv_ninho",
+      "name": "Ninho",
+      "available": true,
+      "img": "/images/sabor-ninho.jpg"
+    },
+    {
+      "id": "sv_choconinho",
+      "name": "Choconinho",
+      "available": true,
+      "img": "/images/sabor-choconinho.jpg"
+    },
+    {
+      "id": "sv_Napolitano",
+      "name": "Napolitano",
+      "available": true,
+      "img": "/images/sabor-napolitano.jpg"
+    },
+    {
+      "id": "sv_ferrero-rocher",
+      "name": "Ferrero Rocher",
+      "available": true,
+      "img": "/images/sabor-ferrerorocher.jpg"
+    },
+    {
+      "id": "sv_creme-com-passas",
+      "name": "Creme com passas",
+      "available": true,
+      "img": "/images/sabor-cremecompassas.jpg"
+    },
+    {
+      "id": "sv_flocos",
+      "name": "Tapioca",
+      "available": true,
+      "img": "/images/sabor-flocos.jpg"
+    }
+  ]
+}
