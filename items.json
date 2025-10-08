@@ -352,6 +352,15 @@
       "type": "sorvete"
     },
     {
+      "id": "AÇAÍ TRUNFADO",
+      "name": "AÇAÍ TRUNFADO",
+      "description": "DELICIOSO AÇAÍ COM CREME DE NINHO, BRIGADEIRO DE CHOCOLATE E LEITE EM PÓ EM UM COPO DE 300ML",
+      "price": 15.00,
+      "img": "/images/acaitrunfado.jpg",
+      "available": true,
+      "type": "sorvete"
+    },
+    {
       "id": "sorvete-pote",
       "name": "Sorvete no Pote",
       "description": "180g de puro sabor, 1 calda e adicionais sem limites",
@@ -364,7 +373,7 @@
       "id": "milk-shake",
       "name": "Milk Shake 300ml",
       "description": "1 sabor, 1 calda e adicionais sem limites",
-      "price": 7.00,
+      "price": 9.00,
       "img": "/images/copodemilk.jpeg",
       "available": true,
       "type": "sorvete"
