@@ -343,20 +343,20 @@
   ],
   "produtos_especiais": [
     {
-      "id": "sorvete-casquinha",
-      "name": "Sorvete de Casquinha",
-      "description": "1 sabor e 1 calda",
-      "price": 4.00,
-      "img": "/images/casquinha.jpg",
-      "available": true,
-      "type": "sorvete"
-    },
-    {
       "id": "AÇAÍ TRUNFADO",
       "name": "AÇAÍ TRUNFADO",
       "description": "DELICIOSO AÇAÍ COM CREME DE NINHO, BRIGADEIRO DE CHOCOLATE E LEITE EM PÓ EM UM COPO DE 300ML",
       "price": 15.00,
       "img": "/images/acaitrunfado.jpg",
+      "available": true,
+      "type": "bebida"
+    },
+    {
+      "id": "sorvete-casquinha",
+      "name": "Sorvete de Casquinha",
+      "description": "1 sabor e 1 calda",
+      "price": 4.00,
+      "img": "/images/casquinha.jpg",
       "available": true,
       "type": "sorvete"
     },
