@@ -209,18 +209,6 @@
       "available": true
     },
     {
-      "id": "jujubas_add",
-      "name": "Jujubas - R$ 1.00",
-      "originalValue": "Jujubas - R$ 1.00",
-      "available": true
-    },
-    {
-      "id": "marshmallow_add",
-      "name": "Marshmallow - R$ 1.00",
-      "originalValue": "Marshmallow - R$ 1.00",
-      "available": true
-    },
-    {
       "id": "doce_leite_add",
       "name": "Doce de leite - R$ 1.00",
       "originalValue": "Doce de leite - R$ 1.00",
@@ -296,12 +284,6 @@
       "id": "chocolate_branco_add",
       "name": "Chocolate Branco (Creme) - R$ 2.00",
       "originalValue": "Chocolate Branco (Creme) - R$ 2.00",
-      "available": true
-    },
-    {
-      "id": "kit_kat_add",
-      "name": "Kit Kat (Creme) - R$ 2.00",
-      "originalValue": "Kit Kat (Creme) - R$ 2.00",
       "available": true
     },
     {
@@ -423,13 +405,19 @@
       "img": "/images/sabor-ferrerorocher.jpg"
     },
     {
+      "id": "sv_nutella",
+      "name": "nutella",
+      "available": true,
+      "img": "/images/sabor-nutella.jpg"
+    },
+    {
       "id": "sv_creme-com-passas",
       "name": "Creme com passas",
       "available": true,
       "img": "/images/sabor-cremecompassas.jpg"
     },
     {
-      "id": "sv_flocos",
+      "id": "sv_tapioca",
       "name": "Tapioca",
       "available": true,
       "img": "/images/sabor-flocos.jpg"
