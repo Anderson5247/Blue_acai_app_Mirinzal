@@ -321,6 +321,12 @@
       "name": "Bola de Sorvete Ferrero Rocher - R$ 1.50",
       "originalValue": "Bola de Sorvete Ferrero Rocher - R$ 1.50",
       "available": true
+    },
+    {
+      "id": "bola-de-sorvete-nutella",
+      "name": "Bola de Sorvete Nutella - R$ 1.50",
+      "originalValue": "Bola de Sorvete Nutella - R$ 1.50",
+      "available": true
     }
   ],
   "produtos_especiais": [
