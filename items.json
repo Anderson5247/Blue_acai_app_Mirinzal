@@ -65,6 +65,11 @@
       "id": "chocolate_branco",
       "name": "Chocolate Branco",
       "available": true
+    },
+    {
+      "id": "chocolate_com_avela",
+      "name": "Chocolate Com avelã",
+      "available": true
     }
   ],
   "acompanhamentos": [
