@@ -328,9 +328,9 @@
       "available": true
     },
     {
-      "id": "bola-de-sorvete-nutella",
-      "name": "Bola de Sorvete Nutella - R$ 1.50",
-      "originalValue": "Bola de Sorvete Nutella - R$ 1.50",
+      "id": "bola-de-sorvete-ovomaltine",
+      "name": "Bola de Sorvete Ovomaltine - R$ 1.50",
+      "originalValue": "Bola de Sorvete Ovomaltine - R$ 1.50",
       "available": true
     }
   ],
@@ -416,10 +416,10 @@
       "img": "/images/sabor-ferrerorocher.jpg"
     },
     {
-      "id": "sv_nutella",
-      "name": "Nutella",
+      "id": "sv_ovomaltine",
+      "name": "Ovomaltine",
       "available": true,
-      "img": "/images/sabor-nutella.jpg"
+      "img": "/images/sabor-ovomaltine.jpg"
     },
     {
       "id": "sv_creme-com-passas",
