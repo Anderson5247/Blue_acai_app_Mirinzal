@@ -47,11 +47,6 @@
       "available": true
     },
     {
-      "id": "ninho_zero_lactose",
-      "name": "Ninho Zero Lactose",
-      "available": true
-    },
-    {
       "id": "maracuja",
       "name": "Maracujá",
       "available": true
@@ -252,12 +247,6 @@
       "id": "ninho_creme_add",
       "name": "Ninho (Creme) - R$ 2.00",
       "originalValue": "Ninho (Creme) - R$ 2.00",
-      "available": true
-    },
-    {
-      "id": "ninho_creme_zero_lactose_add",
-      "name": "Ninho Zero Lactose (Creme) - R$ 2.00",
-      "originalValue": "Ninho Zero Lactose (Creme) - R$ 2.00",
       "available": true
     },
     {
