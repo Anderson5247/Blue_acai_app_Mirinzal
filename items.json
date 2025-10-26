@@ -33,6 +33,11 @@
       "id": "uva",
       "name": "Uva",
       "available": true
+      },
+    {
+      "id": "uva passa",
+      "name": "Uva Passa",
+      "available": true
     }
   ],
   "cremes": [
@@ -109,8 +114,8 @@
       "available": true
     },
     {
-      "id": "uva_passa_acomp",
-      "name": "Uva Passa",
+      "id": "doce_de_leite",
+      "name": "Doce de Leite",
       "available": true
     }
   ],
@@ -147,12 +152,6 @@
     }
   ],
   "adicionais": [
-    {
-      "id": "ovomaltine_add",
-      "name": "Ovomaltine - R$ 2.00",
-      "originalValue": "Ovomaltine - R$ 2.00",
-      "available": true
-    },
     {
       "id": "amendoim_add",
       "name": "Amendoim (Adicional) - R$ 1.00",
