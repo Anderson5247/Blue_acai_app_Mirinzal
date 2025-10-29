@@ -283,7 +283,7 @@
       "id": "bola-de-sorvete-tapioca",
       "name": "Bola de Sorvete Tapioca - R$ 1.50",
       "originalValue": "Bola de Sorvete Tapioca - R$ 1.50",
-      "available": true
+      "available": false
     },
     {
       "id": "bola-de-sorvete-creme-com-passas",
@@ -295,7 +295,7 @@
       "id": "bola-de-sorvete-ninho",
       "name": "Bola de Sorvete Ninho - R$ 1.50",
       "originalValue": "Bola de Sorvete Ninho - R$ 1.50",
-      "available": true
+      "available": false
     },
     {
       "id": "bola-de-sorvete-choconinho",
@@ -307,7 +307,7 @@
       "id": "bola-de-sorvete-napolitano",
       "name": "Bola de Sorvete Napolitano - R$ 1.50",
       "originalValue": "Bola de Sorvete Napolitano - R$ 1.50",
-      "available": true
+      "available": false
     },
     {
       "id": "bola-de-sorvete-ferrero-rocher",
@@ -338,7 +338,7 @@
       "description": "1 sabor e 1 calda",
       "price": 4.00,
       "img": "/images/casquinha.jpg",
-      "available": true,
+      "available": false,
       "type": "sorvete"
     },
     {
@@ -382,7 +382,7 @@
     {
       "id": "sv_ninho",
       "name": "Ninho",
-      "available": true,
+      "available": false,
       "img": "/images/sabor-ninho.jpg"
     },
     {
@@ -394,7 +394,7 @@
     {
       "id": "sv_Napolitano",
       "name": "Napolitano",
-      "available": true,
+      "available": false,
       "img": "/images/sabor-napolitano.jpg"
     },
     {
@@ -412,13 +412,13 @@
     {
       "id": "sv_creme-com-passas",
       "name": "Creme com passas",
-      "available": true,
+      "available": false,
       "img": "/images/sabor-cremecompassas.jpg"
     },
     {
       "id": "sv_tapioca",
       "name": "Tapioca",
-      "available": true,
+      "available": false,
       "img": "/images/sabor-flocos.jpg"
     }
   ]
