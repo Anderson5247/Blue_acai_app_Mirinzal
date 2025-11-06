@@ -289,13 +289,13 @@
       "id": "bola-de-sorvete-creme-com-passas",
       "name": "Bola de Sorvete Creme com passas - R$ 1.50",
       "originalValue": "Bola de Sorvete Creme com passas - R$ 1.50",
-      "available": true
+      "available": false
     },
     {
       "id": "bola-de-sorvete-ninho",
       "name": "Bola de Sorvete Ninho - R$ 1.50",
       "originalValue": "Bola de Sorvete Ninho - R$ 1.50",
-      "available": false
+      "available":false
     },
     {
       "id": "bola-de-sorvete-choconinho",
@@ -342,8 +342,8 @@
       "type": "sorvete"
     },
     {
-      "id": "sorvete-pote",
-      "name": "Sorvete no Pote",
+      "id": "sorvete-copo",
+      "name": "Sorvete no Copo",
       "description": "180g de puro sabor, 1 calda e adicionais sem limites",
       "price": 8.00,
       "img": "/images/copo.jpeg",
@@ -388,7 +388,7 @@
     {
       "id": "sv_choconinho",
       "name": "Choconinho",
-      "available": true,
+      "available": false,
       "img": "/images/sabor-choconinho.jpg"
     },
     {
