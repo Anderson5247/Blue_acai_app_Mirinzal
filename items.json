@@ -312,39 +312,12 @@
   ],
   "produtos_especiais": [
     {
-      "id": "AÇAÍ TRUFADO",
-      "name": "AÇAÍ TRUFADO",
-      "description": "DELICIOSO AÇAÍ COM MUITO CREME DE NINHO, CREME DE CHOCOLATE COM AVELÃ E LEITE EM PÓ EM UM COPO DE 300ML",
-      "price": 15.00,
-      "img": "/images/acaitrufado.jpg",
-      "available": false,
-      "type": "bebida"
-    },
-    {
-      "id": "sorvete-casquinha",
-      "name": "Sorvete de Casquinha",
-      "description": "1 sabor e 1 calda",
-      "price": 4.00,
-      "img": "/images/casquinha.jpg",
-      "available": false,
-      "type": "sorvete"
-    },
-    {
       "id": "sorvete-copo",
       "name": "Sorvete no Copo",
       "description": "180g de puro sabor, 1 calda e adicionais sem limites",
       "price": 8.00,
       "img": "/images/copo.jpeg",
       "available": true,
-      "type": "sorvete"
-    },
-    {
-      "id": "milk-shake",
-      "name": "Milk Shake 300ml",
-      "description": "1 sabor, 1 calda e adicionais sem limites",
-      "price": 9.00,
-      "img": "/images/copodemilk.jpeg",
-      "available": false,
       "type": "sorvete"
     }
   ],
