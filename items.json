@@ -47,6 +47,11 @@
       "available": true
     },
     {
+      "id": "ninho_zero_lactose",
+      "name": "Ninho ZERO LACTOSE",
+      "available": true
+    },
+    {
       "id": "maracuja",
       "name": "Maracujá",
       "available": true
@@ -54,11 +59,6 @@
     {
       "id": "morango_creme",
       "name": "Morango (Creme)",
-      "available": true
-    },
-    {
-      "id": "abacaxi",
-      "name": "Abacaxi",
       "available": true
     },
     {
@@ -280,18 +280,6 @@
       "available": true
     },
     {
-      "id": "bola-de-sorvete-tapioca",
-      "name": "Bola de Sorvete Tapioca - R$ 1.50",
-      "originalValue": "Bola de Sorvete Tapioca - R$ 1.50",
-      "available": false
-    },
-    {
-      "id": "bola-de-sorvete-creme-com-passas",
-      "name": "Bola de Sorvete Creme com passas - R$ 1.50",
-      "originalValue": "Bola de Sorvete Creme com passas - R$ 1.50",
-      "available": false
-    },
-    {
       "id": "bola-de-sorvete-ninho",
       "name": "Bola de Sorvete Ninho - R$ 1.50",
       "originalValue": "Bola de Sorvete Ninho - R$ 1.50",
@@ -301,7 +289,7 @@
       "id": "bola-de-sorvete-choconinho",
       "name": "Bola de Sorvete Choconinho - R$ 1.50",
       "originalValue": "Bola de Sorvete Choconinho - R$ 1.50",
-      "available": true
+      "available": false
     },
     {
       "id": "bola-de-sorvete-napolitano",
@@ -329,7 +317,7 @@
       "description": "DELICIOSO AÇAÍ COM MUITO CREME DE NINHO, CREME DE CHOCOLATE COM AVELÃ E LEITE EM PÓ EM UM COPO DE 300ML",
       "price": 15.00,
       "img": "/images/acaitrufado.jpg",
-      "available": true,
+      "available": false,
       "type": "bebida"
     },
     {
@@ -356,26 +344,8 @@
       "description": "1 sabor, 1 calda e adicionais sem limites",
       "price": 9.00,
       "img": "/images/copodemilk.jpeg",
-      "available": true,
+      "available": false,
       "type": "sorvete"
-    },
-    {
-      "id": "guarana-300",
-      "name": "Guaraná da Amazônia 300ml",
-      "description": "EM BREVE Turbine com caldas e adicionais!",
-      "price": 10.00,
-      "img": "/images/copode300ml.png",
-      "available": false,
-      "type": "bebida"
-    },
-    {
-      "id": "guarana-500",
-      "name": "Guaraná da Amazônia 500ml",
-      "description": "EM BREVE Turbine com caldas e adicionais!",
-      "price": 15.00,
-      "img": "/images/copode500ml.png",
-      "available": false,
-      "type": "bebida"
     }
   ],
   "sorvete_sabores": [
