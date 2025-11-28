@@ -250,6 +250,12 @@
       "available": true
     },
     {
+      "id": "ninho_creme_zero_add",
+      "name": "Ninho ZERO LACTOSE (Creme) - R$ 2.00",
+      "originalValue": "Ninho ZERO LACTOSE (Creme) - R$ 2.00",
+      "available": true
+    },
+    {
       "id": "maracuja_creme_add",
       "name": "Maracujá (Creme) - R$ 2.00",
       "originalValue": "Maracujá (Creme) - R$ 2.00",
@@ -259,12 +265,6 @@
       "id": "morango_creme_add_extra",
       "name": "Morango (Creme) - R$ 2.00",
       "originalValue": "Morango (Creme) - R$ 2.00",
-      "available": true
-    },
-    {
-      "id": "abacaxi_creme_add",
-      "name": "Abacaxi (Creme) - R$ 2.00",
-      "originalValue": "Abacaxi (Creme) - R$ 2.00",
       "available": true
     },
     {
